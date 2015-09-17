@@ -1,0 +1,21 @@
+F Ro P
+
+P 36
+Ro -96
+Ro 60 F
+
+F 96
+P 33
+F 46 Ro
+
+Ro 22
+F 36
+Ro 24
+
+P -192
+Ro -92 P
+Ro 55
+
+P 18
+Ro -100
+Ro 48

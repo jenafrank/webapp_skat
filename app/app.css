@@ -28,3 +28,203 @@
   content: "";
   padding: 0;
 }
+
+html {overflow-x:hidden;}
+body {margin:0;padding:0;}
+
+video, object {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
+}
+
+.line0 {
+  margin-top:100px;
+  opacity: 0;
+
+
+  transition: opacity 5s ease-in-out;
+  -moz-transition: opacity 5s ease-in-out;
+  -webkit-transition: opacity 5s ease-in-out;
+}
+
+.line1 {
+  opacity: 0;
+  margin-top: -7px;
+
+  font-size: 48px;
+  font-weight: bold;
+  font-family: "Source Code Pro", cursive;
+
+  transition: opacity 6s ease-in-out;
+  -moz-transition: opacity 6s ease-in-out;
+  -webkit-transition: opacity 6s ease-in-out;
+}
+
+.line2 {
+  opacity: 0;
+
+  font-size: 22px;
+  margin-top: -6px;
+  font-family: "Righteous", cursive;
+
+  transition: opacity 2s ease-in-out;
+  -moz-transition: opacity 2s ease-in-out;
+  -webkit-transition: opacity 2s ease-in-out;
+}
+
+.line3 {
+  margin-top:15%;
+  opacity: 0;
+
+  transition: opacity 2.5s ease-in-out;
+  -moz-transition: opacity 2.5s ease-in-out;
+  -webkit-transition: opacity 2.5s ease-in-out;
+}
+
+.bubble1 {
+  width: 150px;
+  height: 150px;
+  background-image: url("img/schell.png");
+  background-size: cover;
+  border: solid 5px;
+  border-color: rgb(75,124,54);;
+  border-radius: 200px;
+  -moz-border-radius: 200px;
+  -webkit-border-radius: 200px;
+  position: absolute;
+}
+
+.bubble2 {
+  width: 150px;
+  height: 150px;
+  background-image: url("img/herz.png");
+  background-size: cover;
+  border: solid 5px;
+  border-color: rgb(75,124,54);;
+  border-radius: 200px;
+  -moz-border-radius: 200px;
+  -webkit-border-radius: 200px;
+  position: absolute;
+}
+
+.bubble3 {
+  width: 150px;
+  height: 150px;
+  background-image: url("img/gruen.png");
+  background-size: cover;
+  border: solid 5px;
+  border-color: rgb(75,124,54);
+  border-radius: 200px;
+  -moz-border-radius: 200px;
+  -webkit-border-radius: 200px;
+  position: absolute;
+}
+
+:focus {
+  outline: 0 none;
+  border-color: rgb(194, 253, 61);
+  box-shadow: 10px 10px 5px #888888;
+  width: 200px;
+  height: 200px;
+}
+
+.x1 {
+  left: 150px;
+  opacity: 0;
+  -webkit-animation: fadein 30s linear 6s infinite, moveclouds 30s linear 6s infinite, sideWays 4s ease-in-out infinite alternate;
+  -moz-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+  -o-animation: moveclouds 30s linear infinite, sideWays 6s ease-in-out infinite alternate;
+}
+
+.x2 {
+  left: 50px;
+  opacity: 0;
+  -webkit-animation: fadein 30s linear 16s infinite, moveclouds 30s linear 16s infinite, sideWays 6s ease-in-out infinite alternate;
+  -moz-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+  -o-animation: moveclouds 30s linear infinite, sideWays 6s ease-in-out infinite alternate;
+}
+
+.x3 {
+  left: 250px;
+  opacity: 0;
+  -webkit-animation: fadein 30s linear 26s infinite, moveclouds 30s linear 26s infinite, sideWays 5s ease-in-out infinite alternate;
+  -moz-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+  -o-animation: moveclouds 30s linear infinite, sideWays 6s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes moveclouds {
+  0% {
+    top: 75%;
+  }
+  100% {
+    top: -500px;
+  }
+}
+
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.75;
+  }
+}
+
+@-webkit-keyframes sideWays {
+  0% {
+    margin-left:0px;
+  }
+  100% {
+    margin-left:50px;
+  }
+}
+
+@-moz-keyframes moveclouds {
+  0% {
+    top: 500px;
+  }
+
+  100% {
+    top: -500px;
+  }
+}
+
+@-moz-keyframes sideWays {
+  0% {
+    margin-left:0px;
+  }
+  100% {
+    margin-left:50px;
+  }
+}
+@-o-keyframes moveclouds {
+  0% {
+    top: 500px;
+  }
+  100% {
+    top: -500px;
+  }
+}
+
+@-o-keyframes sideWays {
+  0% {
+    margin-left:0px;
+  }
+  100% {
+    margin-left:50px;
+  }
+}
+
+

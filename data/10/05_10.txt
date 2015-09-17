@@ -1,0 +1,34 @@
+
+A Ro T F
+F 27
+F 96
+A 72
+T -46
+T 96
+T 36
+F 72
+Ro 40
+
+Ro A T F
+A -88
+Ro 48
+F 36
+T 36
+T 36
+Ro 96
+A 46
+T 23
+F 144
+A 30
+Ro 72
+E
+
+F Ro A T
+T 44
+T 24
+A 96
+Ro 44
+T 72
+F 48
+T 23
+A 96

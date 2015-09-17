@@ -1,0 +1,96 @@
+P A Tr F
+
+F 27
+F 36
+A 48
+A 33
+
+Tr 24
+F -60
+F 72
+P 35
+
+P A Tr
+
+P 36
+P -66
+P 120
+
+A 33
+A 60
+A -240
+
+Tr -72
+A 24
+A 22
+
+Tr 44
+Tr 60
+P 24
+
+F Ro R Pa
+
+R -59
+Pa 31
+Pa -160
+Ro 64
+
+R 44
+Pa -88
+F 128
+Pa 192
+
+F 64 R
+F 73
+R 40
+F 64
+
+F Ro Tr
+
+Ro 35
+F 60
+Tr 48
+
+F 96 Ro
+Ro -184
+Tr 40
+
+Pa P A R
+
+R 24
+R 24
+P 60 R
+P 72
+
+P 40 R
+R 72
+P 96
+P 96
+
+A Pa F
+
+Pa 20
+F -80
+F 18
+
+A 60
+Pa -36
+Pa -44
+
+Tr P R
+
+P 24
+R 72
+P 60
+
+P 20
+Tr -240
+R 72
+
+A F Ro P Tr
+
+R 44
+P 20
+P -46
+R 96
+F 72

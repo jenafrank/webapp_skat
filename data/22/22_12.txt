@@ -1,0 +1,181 @@
+R S Ro
+
+R 96
+R 72
+S 48
+
+Ro 144
+R 33
+Ro 48
+
+S -46
+Ro 48
+Ro 40
+
+A F P
+
+A -33
+F 48
+A 36
+
+A 96
+P 46
+F 40 P
+
+P 36
+A 24
+P 96
+
+R P A
+
+A 22
+R 24
+A 44
+
+R 60
+A 72
+R 33
+
+A 60 R
+E
+P -54 R
+
+F S Ro
+
+F -96
+Ro -144
+S 24
+
+R 36
+F 30
+S 72
+
+F 30
+S 168
+Ro 24
+
+A F S
+
+F 30
+S -144
+S 72
+
+S 48
+S 30
+S 33
+
+F 72
+S -44
+F 60
+
+Ro P R
+
+Ro 72
+R 72
+Ro 72
+
+P 30
+R 33
+Ro -46
+
+Ro -72
+P 72
+P -92
+
+P S Od A
+
+Od 27
+E
+P -48
+P -96
+
+S 26
+P 40
+S 120
+S -48
+
+S 22
+A 48
+S 23
+S 60
+
+Ro F R
+
+Ro 46
+F 44
+Ro 27
+
+R 36
+Ro -176
+F 48
+
+F 27
+Ro -33
+Ro 40
+
+Ro 55
+Ro 22
+F 120
+
+A F S
+
+A 22
+S 30
+A 120
+
+S 96
+S 22
+F 120
+
+S -44
+S 36
+A 36
+
+E
+F -44
+A 96
+
+P R Od Ro
+
+Ro 30
+Ro 120
+P 55
+R 46
+
+Od -46
+P 120
+P -46
+Od 18
+
+Ro 36
+Od 72
+Ro 20
+P 20
+
+P A Ro
+
+Ro 72
+A 120
+A 33
+
+A 96
+Ro 48
+A 46
+
+E
+A 27
+Ro 96
+
+S Od R
+
+Od 36
+E
+R 72
+
+R 96
+S 30
+S -88
+
+S -20
+Od 36
+R 120
