@@ -9,7 +9,7 @@ angular.module('myApp', [
     'ngAnimate'
 ]).
     config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.otherwise({redirectTo: '/view1'});
+        $routeProvider.otherwise({redirectTo: '/reactive'});
     }])
     .run(['$rootScope', '$timeout', function ($rootScope, $timeout) {
 
@@ -77,7 +77,54 @@ angular.module('myApp', [
         console.log("Executed");
         $rootScope.isOn = false;
 
+        // sync animation and reload of picture
+        var bubbleElement1 = document.getElementById("bubble1");
+        var bubbleElement2 = document.getElementById("bubble2");
+        var bubbleElement3 = document.getElementById("bubble3");
+        var x;
+
+        // Shoot first to third bubble!! yeah.
+        $timeout(function() {
+            refreshBubbleWithNumber("1");
+            bubbleElement1.classList.add('y1');
+        },6000);
+
+        $timeout(function() {
+            refreshBubbleWithNumber("2");
+            bubbleElement2.classList.add('y2');
+        },16000);
+
+        $timeout(function() {
+            refreshBubbleWithNumber("3");
+            bubbleElement3.classList.add('y3');
+        },26000);
+
+        // get informed when animation (one bubbling procedure) finishes and update picture
+        bubbleElement1.addEventListener("animationend", function() {
+            bubbleElement1.classList.remove('y1');
+            refreshBubbleWithNumber("1");
+            x = bubbleElement1.offsetWidth;
+            bubbleElement1.classList.add('y1');
+        }, false);
+
+        bubbleElement2.addEventListener("animationend", function() {
+            bubbleElement2.classList.remove('y2');
+            refreshBubbleWithNumber("2");
+            x = bubbleElement2.offsetWidth;
+            bubbleElement2.classList.add('y2');
+        }, false);
+
+        bubbleElement3.addEventListener("animationend", function() {
+            bubbleElement3.classList.remove('y3');
+            refreshBubbleWithNumber("3");
+            x = bubbleElement3.offsetWidth;
+            bubbleElement3.classList.add('y3');
+        }, false);
+
+        // time-fixed selection of elements, they get bigger, ugh!
         $('#bubbles').click(function () {
+            // ToDo: Empty selection
+            //
             $(this).find(":focus").each(function (idx) {
                 var id = this.id;
                 document.getElementById(id).style.borderColor = "rgb(194, 253, 61)";
@@ -94,4 +141,19 @@ angular.module('myApp', [
                 }, 5000);
             });
         });
+
+        // Reshuffle pictures
+        function refreshBubbleWithNumber(bubbleNr) {
+            $(".bubble" + bubbleNr).css("background-image", nextPicture());
+            console.log($(".bubble" + bubbleNr).css("background-image"));
+        }
+
+        $scope.picIndex = -1;
+        function nextPicture() {
+            $scope.picIndex++;
+            if ($scope.picIndex === $rootScope.pictures.length) {
+                $scope.picIndex = 0;
+            }
+            return 'url("' + $scope.pictures[$scope.picIndex] + '")';
+        }
     }]);

@@ -138,9 +138,18 @@ video, object {
   -webkit-transition: width 0.5s, height 0.5s;
   -moz-transition: width 0.5s, height 0.5s;
   -o-transition: width 0.5s, height 0.5s;
-  -webkit-animation: fadein 30s linear 6s infinite, moveclouds 30s linear 6s infinite, sideWays 4s ease-in-out infinite alternate;
-  -moz-animation: fadein 30s linear 6s infinite, moveclouds 30s linear 6s infinite, sideWays 4s ease-in-out infinite alternate;
-  -o-animation: fadein 30s linear 6s infinite, moveclouds 30s linear 6s infinite, sideWays 4s ease-in-out infinite alternate;
+
+}
+
+.y1 {
+  /* 6 sec delay */
+  -webkit-animation: fadein 30s linear 0s 1,
+  moveclouds 30s linear 0s 1,
+  sideWays 4s ease-in-out 8 alternate;
+  /*
+  -moz-animation:
+  -o-animation:
+  */
 }
 
 .x2 {
@@ -149,9 +158,17 @@ video, object {
   -webkit-transition: width 0.5s, height 0.5s;
   -moz-transition: width 0.5s, height 0.5s;
   -o-transition: width 0.5s, height 0.5s;
-  -webkit-animation: fadein 30s linear 16s infinite, moveclouds 30s linear 16s infinite, sideWays 6s ease-in-out infinite alternate;
-  -moz-animation: fadein 30s linear 16s infinite, moveclouds 30s linear 16s infinite, sideWays 6s ease-in-out infinite alternate;
-  -o-animation: fadein 30s linear 16s infinite, moveclouds 30s linear 16s infinite, sideWays 6s ease-in-out infinite alternate;
+}
+
+.y2 {
+  /* 16 sec delay */
+  -webkit-animation: fadein 30s linear 0s 1,
+  moveclouds 30s linear 0s 1,
+  sideWays 6s ease-in-out 6 alternate;
+  /*
+  -moz-animation:
+  -o-animation:
+  */
 }
 
 .x3 {
@@ -160,9 +177,16 @@ video, object {
   -webkit-transition: width 0.5s, height 0.5s;
   -moz-transition: width 0.5s, height 0.5s;
   -o-transition: width 0.5s, height 0.5s;
-  -webkit-animation: fadein 30s linear 26s infinite, moveclouds 30s linear 26s infinite, sideWays 5s ease-in-out infinite alternate;
-  -moz-animation: fadein 30s linear 26s infinite, moveclouds 30s linear 26s infinite, sideWays 5s ease-in-out infinite alternate;
-  -o-animation: fadein 30s linear 26s infinite, moveclouds 30s linear 26s infinite, sideWays 5s ease-in-out infinite alternate;
+
+}
+
+.y3 {
+  /* 26 sec delay */
+  -webkit-animation: fadein 30s linear 0s 1,
+  moveclouds 30s linear 0s 1,
+  sideWays 5s ease-in-out 7 alternate;
+  /* -moz-animation:
+  -o-animation: */
 }
 
 @-webkit-keyframes moveclouds {
