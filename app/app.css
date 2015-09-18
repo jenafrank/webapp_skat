@@ -47,18 +47,15 @@ video, object {
 }
 
 .line0 {
-  margin-top:100px;
   opacity: 0;
 
-
-  transition: opacity 5s ease-in-out;
-  -moz-transition: opacity 5s ease-in-out;
-  -webkit-transition: opacity 5s ease-in-out;
+  transition: opacity 3s ease-in-out;
+  -moz-transition: opacity 3s ease-in-out;
+  -webkit-transition: opacity 3s ease-in-out;
 }
 
 .line1 {
   opacity: 0;
-  margin-top: -7px;
 
   font-size: 48px;
   font-weight: bold;
@@ -73,7 +70,6 @@ video, object {
   opacity: 0;
 
   font-size: 22px;
-  margin-top: -6px;
   font-family: "Righteous", cursive;
 
   transition: opacity 2s ease-in-out;
@@ -82,7 +78,6 @@ video, object {
 }
 
 .line3 {
-  margin-top:15%;
   opacity: 0;
 
   transition: opacity 2.5s ease-in-out;
@@ -140,25 +135,34 @@ video, object {
 .x1 {
   left: 150px;
   opacity: 0;
+  -webkit-transition: width 0.5s, height 0.5s;
+  -moz-transition: width 0.5s, height 0.5s;
+  -o-transition: width 0.5s, height 0.5s;
   -webkit-animation: fadein 30s linear 6s infinite, moveclouds 30s linear 6s infinite, sideWays 4s ease-in-out infinite alternate;
-  -moz-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
-  -o-animation: moveclouds 30s linear infinite, sideWays 6s ease-in-out infinite alternate;
+  -moz-animation: fadein 30s linear 6s infinite, moveclouds 30s linear 6s infinite, sideWays 4s ease-in-out infinite alternate;
+  -o-animation: fadein 30s linear 6s infinite, moveclouds 30s linear 6s infinite, sideWays 4s ease-in-out infinite alternate;
 }
 
 .x2 {
   left: 50px;
   opacity: 0;
+  -webkit-transition: width 0.5s, height 0.5s;
+  -moz-transition: width 0.5s, height 0.5s;
+  -o-transition: width 0.5s, height 0.5s;
   -webkit-animation: fadein 30s linear 16s infinite, moveclouds 30s linear 16s infinite, sideWays 6s ease-in-out infinite alternate;
-  -moz-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
-  -o-animation: moveclouds 30s linear infinite, sideWays 6s ease-in-out infinite alternate;
+  -moz-animation: fadein 30s linear 16s infinite, moveclouds 30s linear 16s infinite, sideWays 6s ease-in-out infinite alternate;
+  -o-animation: fadein 30s linear 16s infinite, moveclouds 30s linear 16s infinite, sideWays 6s ease-in-out infinite alternate;
 }
 
 .x3 {
   left: 250px;
   opacity: 0;
+  -webkit-transition: width 0.5s, height 0.5s;
+  -moz-transition: width 0.5s, height 0.5s;
+  -o-transition: width 0.5s, height 0.5s;
   -webkit-animation: fadein 30s linear 26s infinite, moveclouds 30s linear 26s infinite, sideWays 5s ease-in-out infinite alternate;
-  -moz-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
-  -o-animation: moveclouds 30s linear infinite, sideWays 6s ease-in-out infinite alternate;
+  -moz-animation: fadein 30s linear 26s infinite, moveclouds 30s linear 26s infinite, sideWays 5s ease-in-out infinite alternate;
+  -o-animation: fadein 30s linear 26s infinite, moveclouds 30s linear 26s infinite, sideWays 5s ease-in-out infinite alternate;
 }
 
 @-webkit-keyframes moveclouds {
@@ -227,4 +231,17 @@ video, object {
   }
 }
 
+.animate {
+  opacity: 0.7;
+}
+
+.animate.ng-hide {
+  opacity: 0;
+}
+
+.animate.ng-hide-add, .animate.ng-hide-remove {
+  -webkit-transition: all linear 0.5s;
+  -moz-transition: all linear 0.5s;
+  -o-transition: all linear 0.5s;
+}
 

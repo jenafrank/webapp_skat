@@ -8,23 +8,28 @@
                     bottom: 0px;
                     display:flex;
                     align-items: center;
-                    justify-content: flex-start;
+                    justify-content: space-between;
                     flex-direction: column;">
-            <div class="line0">
-                <img style="opacity: 0.6;" src="bube.png"/>
-            </div>
-            <h2 class="line1">
-                gutblatt.de
-            </h2>
 
-            <h1 class="line2">R &middot;
-                E &middot; A &middot; C &middot; T &middot; I &middot; V &middot; E
-            </h1>
+            <div style="display:flex; align-items:center; justify-content:center; flex-direction: column;">
+                <div class="line0" style="margin-top:60px;">
+                    <img style="opacity: 0.6;" src="bube.png"/>
+                </div>
+                <h2 class="line1" style="margin-top:-4px;">
+                    gutblatt.de
+                </h2>
+
+                <h1 class="line2" style="margin-top:-10px;">
+                    R &middot; E &middot; A &middot; C &middot; T &middot; I &middot; V &middot; E
+                </h1>
+            </div>
 
             <h3 class="line3">coming soon</h3>
 
-            <div style="margin-top:10px;justify-self: flex-end;">
-                {{$root.bubbleInfo}}
+            <div style="height:100px;">
+                <div class="animate well" ng-show="$root.isOn">
+                    {{$root.bubbleInfo}}
+                </div>
             </div>
         </div>
     </div>

@@ -5,7 +5,8 @@ angular.module('myApp', [
     'ngRoute',
     'myApp.view1',
     'myApp.view2',
-    'myApp.version'
+    'myApp.version',
+    'ngAnimate'
 ]).
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/view1'});
@@ -43,6 +44,7 @@ angular.module('myApp', [
         };
 
         $rootScope.showInfo = function (bubbleNr) {
+            $rootScope.isOn = true;
             var key = getKey(bubbleNr);
             var re = /img[^\)]*/;
             var substr = re.exec(key);
@@ -71,20 +73,22 @@ angular.module('myApp', [
          });
          */
     }])
-    .controller('mainCtrl', ['$timeout', function ($timeout) {
+    .controller('mainCtrl', ['$timeout', '$rootScope', '$scope', function ($timeout, $rootScope, $scope) {
         console.log("Executed");
+        $rootScope.isOn = false;
 
         $('#bubbles').click(function () {
             $(this).find(":focus").each(function (idx) {
                 var id = this.id;
-                document.getElementById(id).style.borderColor = "rgb(75,124,54)";
-                document.getElementById(id).style.boxShadow= "none";
+                document.getElementById(id).style.borderColor = "rgb(194, 253, 61)";
+                document.getElementById(id).style.boxShadow = "10px 10px 5px #888888";
                 document.getElementById(id).style.width = "200px";
                 document.getElementById(id).style.height = "200px";
                 $timeout(function () {
+                    $rootScope.isOn = false;
                     console.log(id);
                     document.getElementById(id).style.borderColor = "rgb(75,124,54)";
-                    document.getElementById(id).style.boxShadow= "none";
+                    document.getElementById(id).style.boxShadow = "none";
                     document.getElementById(id).style.width = "150px";
                     document.getElementById(id).style.height = "150px";
                 }, 5000);
