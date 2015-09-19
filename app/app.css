@@ -146,10 +146,12 @@ video, object {
   -webkit-animation: fadein 30s linear 0s 1,
   moveclouds 30s linear 0s 1,
   sideWays 4s ease-in-out 8 alternate;
-  /*
-  -moz-animation:
-  -o-animation:
-  */
+  -moz-animation: fadein 30s linear 0s 1,
+  moveclouds 30s linear 0s 1,
+  sideWays 4s ease-in-out 8 alternate;
+  -o-animation: fadein 30s linear 0s 1,
+  moveclouds 30s linear 0s 1,
+  sideWays 4s ease-in-out 8 alternate;
 }
 
 .x2 {
@@ -165,10 +167,12 @@ video, object {
   -webkit-animation: fadein 30s linear 0s 1,
   moveclouds 30s linear 0s 1,
   sideWays 6s ease-in-out 6 alternate;
-  /*
-  -moz-animation:
-  -o-animation:
-  */
+  -moz-animation: fadein 30s linear 0s 1,
+  moveclouds 30s linear 0s 1,
+  sideWays 6s ease-in-out 6 alternate;
+  -o-animation: fadein 30s linear 0s 1,
+  moveclouds 30s linear 0s 1,
+  sideWays 6s ease-in-out 6 alternate;
 }
 
 .x3 {
@@ -185,8 +189,12 @@ video, object {
   -webkit-animation: fadein 30s linear 0s 1,
   moveclouds 30s linear 0s 1,
   sideWays 5s ease-in-out 7 alternate;
-  /* -moz-animation:
-  -o-animation: */
+  -moz-animation: fadein 30s linear 0s 1,
+  moveclouds 30s linear 0s 1,
+  sideWays 5s ease-in-out 7 alternate;
+  -o-animation: fadein 30s linear 0s 1,
+  moveclouds 30s linear 0s 1,
+  sideWays 5s ease-in-out 7 alternate;
 }
 
 @-webkit-keyframes moveclouds {
