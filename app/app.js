@@ -8,7 +8,7 @@ angular.module('myApp', [
     'myApp.version',
     'ngAnimate'
 ]).
-    config(['$routeProvider', function ($routeProvider) {
+    config(['$routeProvider', '$locationProvider', function ($routeProvider,$locationProvider) {
         $routeProvider.otherwise({redirectTo: '/reactive'});
     }])
     .run(['$rootScope', '$timeout', function ($rootScope, $timeout) {
