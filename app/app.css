@@ -227,6 +227,18 @@ video, object {
   }
 }
 
+@-moz-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.75;
+  }
+}
+
 @-moz-keyframes moveclouds {
   0% {
     top: 500px;
@@ -245,6 +257,19 @@ video, object {
     margin-left:50px;
   }
 }
+
+@-o-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.75;
+  }
+}
+
 @-o-keyframes moveclouds {
   0% {
     top: 500px;
