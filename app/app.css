@@ -136,9 +136,9 @@ video, object {
   left: 150px;
   opacity: 0;
   -webkit-transition: width 0.5s, height 0.5s;
-  -moz-transition: width 0.5s, height 0.5s;
+  -moz-transition: width 1s, height 1s;
   -o-transition: width 0.5s, height 0.5s;
-
+  transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
 }
 
 .y1 {
@@ -297,8 +297,8 @@ video, object {
 }
 
 .animate.ng-hide-add, .animate.ng-hide-remove {
-  -webkit-transition: all linear 0.5s;
-  -moz-transition: all linear 0.5s;
-  -o-transition: all linear 0.5s;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
 }
 
