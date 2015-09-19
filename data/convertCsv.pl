@@ -112,31 +112,32 @@ while (my $row = <$fh>) {
 		my $index = 0;
 		my $removeIndex = -1;
 		my @against = ();
+		my $nrPlys = @plys;
 
-		if ($plys == 3) {
+		if ($nrPlys == 3) {
 			@against = @plys;
-		} elsif ($plys == 4) {
-			var cls = $game % 4;
-			if (cls == 3) {
+		} elsif ($nrPlys == 4) {
+			my $cls = $game % 4;
+			if ($cls == 3) {
 				@against = ($plys[0],$plys[1],$plys[2]);
-			} elsif (cls == 0 ) {
+			} elsif ($cls == 0 ) {
 				@against = ($plys[1],$plys[2],$plys[3]);
-			} elsif (cls == 1 ) {
+			} elsif ($cls == 1 ) {
 				@against = ($plys[2],$plys[3],$plys[0]);
-			} elsif (cls == 2 ) {
+			} elsif ($cls == 2 ) {
 				@against = ($plys[3],$plys[0],$plys[1]);
 			}
-		} elsif ($plys == 5) {
-			var cls = $game % 5;
-			if (cls == 0) {
+		} elsif ($nrPlys == 5) {
+			my $cls = $game % 5;
+			if ($cls == 0) {
 				@against = ($plys[1],$plys[2],$plys[4]);
-			} elsif (cls == 1 ) {
+			} elsif ($cls == 1 ) {
 				@against = ($plys[2],$plys[3],$plys[0]);
-			} elsif (cls == 2 ) {
+			} elsif ($cls == 2 ) {
 				@against = ($plys[3],$plys[4],$plys[1]);
-			} elsif (cls == 3 ) {
+			} elsif ($cls == 3 ) {
 				@against = ($plys[4],$plys[0],$plys[2]);
-			} elsif (cls == 4 ) {
+			} elsif ($cls == 4 ) {
 				@against = ($plys[0],$plys[1],$plys[3]);
 			}
 		} else {
