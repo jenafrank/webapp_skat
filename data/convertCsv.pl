@@ -4,169 +4,210 @@ use strict;
 use warnings;
 use open ':std', ':encoding(UTF-8)';
 
-say "Hello!";
-
+my $debug = 0;
 my $nrArg = $#ARGV + 1;
 
-print "$nrArg arguments detected... \n";
+if ($debug) { print "$nrArg arguments detected... \n"; }
 
-if ($nrArg != 1) {
-	print "\n ERROR 003. Please provide exactly one argument. \n\n";
-	exit(1);
+if ( $nrArg != 1 ) {
+    print "\n ERROR 003. Please provide exactly one argument. \n\n";
+    exit(1);
 }
 
-my $debug = 0;
 my $filename = $ARGV[0];
 
+# Regex. Format specification for file name
 $filename =~ /(\d\d)_(\d\d)/;
+
 my $season = $1;
-my $day = $2;
+my $day    = $2;
 
-print "Season $season. Day $day.";
+if ($debug) { print "Season $season. Day $day."; }
 
-if (!$season || !$day) {
-	print "\n ERROR 002. Name not in correct format. exiting...\n\n";
-	exit(1);
+if ( !$season || !$day ) {
+    print "\n ERROR 002. Name not in correct format. exiting...\n\n";
+    exit(1);
 }
 
 my @plys;
 my $game = 0;
 
-open(my $fh, $filename);
+open( my $fh, $filename );
 
-while (my $row = <$fh>) {
+while ( my $row = <$fh> ) {
 
-	# Mode 1: Activate new players
+    # Mode 1: Activate new players
 
-	$row =~ /([a-zA-z]+) ([a-zA-z]+) ([a-zA-z]+)\s?([a-zA-z]+)?\s?([a-zA-z]+)?/;
+    # Regex for changing the player table (3,4,5 players supported)
+    my $isRoundChange = $row
+        =~ /([a-zA-z]+) ([a-zA-z]+) ([a-zA-z]+)\s?([a-zA-z]+)?\s?([a-zA-z]+)?/;
 
-	my $p1 = $1;
-	my $p2 = $2;
-	my $p3 = $3;
-	my $p4 = $4;
-	my $p5 = $5;
+    my $p1 = $1;
+    my $p2 = $2;
+    my $p3 = $3;
+    my $p4 = $4;
+    my $p5 = $5;
 
-	if ($debug) {
-		if ($p1 && $p2 && $p3) {
-			print "$row _ $p1 $p2 $p3";
-		}
+    if ($isRoundChange) {
 
-		if ($p4) {
-			print " $p4";
-		}
+        # parse line if valid
 
-		if ($p5) {
-			print " $p5";
-		}
-		print "\n";
-	}
+        if ($p5) {
 
-	# parse line if valid
+            # Five-Player mode
+            if ($debug) {
+                print "5 players detected. $p1 $p2 $p3 $p4 $p5. \n";
+            }
+            @plys = ( $p1, $p2, $p3, $p4, $p5 );
 
-	if ($p5) {
-		# Five-Player mode
-		print "5 players detected. $p1 $p2 $p3 $p4 $p5. \n";
-		@plys = ($p1,$p2,$p3,$p4,$p5);
+        }
+        elsif ($p4) {
 
-	} elsif ($p4) {
-		# Four-Player mode
-		print "4 players detected. $p1 $p2 $p3 $p4. \n";
-		@plys = ($p1,$p2,$p3,$p4);
+            # Four-Player mode
+            if ($debug) {
+                print "4 players detected. $p1 $p2 $p3 $p4. \n";
+            }
+            @plys = ( $p1, $p2, $p3, $p4 );
 
-	} elsif ($p3) {
-		# Three-Player mode
-		print "3 players detected. $p1 $p2 $p3. \n";
-		@plys = ($p1,$p2,$p3);
-	}
+        }
+        elsif ($p3) {
 
-	if ($p3) {
-		$game = 0;
-	}
+            # Three-Player mode
+            if ($debug) {
+                print "3 players detected. $p1 $p2 $p3. \n";
+            }
+            @plys = ( $p1, $p2, $p3 );
+        }
 
-	# Mode 2: Database entries
+  # Reset game counter. The game counter is necessary to determine the current
+  # 3-player active subset for 4-player and 5-player tables
+        if ($p3) {
+            $game = 0;
+        }
+    }
 
-	$row =~ /([a-zA-z]+) (\d+)\s?([a-zA-z]+)?/;
+    # Mode 2: Database entries
 
-	my $p = $1;
-	my $val = $2;
-	my $kontra = $3;
+    # Regex for Games:
 
-	if ($debug) {
-		if ($p && $val) {
-			print "Player: $p Punkte: $val";
-		}
-		if ($kontra) {
-			print " Kontra gegeben von: $kontra";
-		}
-	}
+    my $isGame        = $row =~ /([a-zA-z]+)\s(-?[0-9]+)\s?([a-zA-z]+)?/;
+    my $isEingemischt = $row =~ /[^a-zA-z]*(E)[^a-zA-z]*/;
 
-	#parse line if valid
+    my $p      = $1;
+    my $val    = $2;
+    my $kontra = $3;
 
-	if ($p && $val) {
+    #parse line if valid
 
-		$game++;
+    if ($isEingemischt) {
+        $p   = 'E';
+        $val = 0;
+    }
 
-		print "Alle Spieler sind: @plys. ";
-		print "Alleinspieler ist: $p. ";
+    if ( $isGame || $isEingemischt ) {
 
-		my $index = 0;
-		my $removeIndex = -1;
-		my @against = ();
-		my $nrPlys = @plys;
+        $game++;
 
-		if ($nrPlys == 3) {
-			@against = @plys;
-		} elsif ($nrPlys == 4) {
-			my $cls = $game % 4;
-			if ($cls == 3) {
-				@against = ($plys[0],$plys[1],$plys[2]);
-			} elsif ($cls == 0 ) {
-				@against = ($plys[1],$plys[2],$plys[3]);
-			} elsif ($cls == 1 ) {
-				@against = ($plys[2],$plys[3],$plys[0]);
-			} elsif ($cls == 2 ) {
-				@against = ($plys[3],$plys[0],$plys[1]);
-			}
-		} elsif ($nrPlys == 5) {
-			my $cls = $game % 5;
-			if ($cls == 0) {
-				@against = ($plys[1],$plys[2],$plys[4]);
-			} elsif ($cls == 1 ) {
-				@against = ($plys[2],$plys[3],$plys[0]);
-			} elsif ($cls == 2 ) {
-				@against = ($plys[3],$plys[4],$plys[1]);
-			} elsif ($cls == 3 ) {
-				@against = ($plys[4],$plys[0],$plys[2]);
-			} elsif ($cls == 4 ) {
-				@against = ($plys[0],$plys[1],$plys[3]);
-			}
-		} else {
-			print "ERROR XXX.";
-			exit(1);
-		}
+        if ($debug) {
+            print "Alle Spieler sind: @plys. ";
+            print "Alleinspieler ist: $p. ";
+        }
 
-		# Validation 1
-		foreach (@against) {
-			if ( $plys[$index] eq $p ) {
-				$removeIndex = $index;
-			}
-			$index++;
-		}
+        my $index       = 0;
+        my $removeIndex = -1;
+        my @against     = ();
+        my $nrPlys      = @plys;
 
-		if ($removeIndex == -1) {
-			print "ERROR 001 ERROR! Alleinspieler nicht im aktuellen Spielersatz.";
-			exit(1);
-		}
+        if ( $nrPlys == 3 ) {
+            @against = @plys;
+        }
+        elsif ( $nrPlys == 4 ) {
+            my $cls = ( $game - 1 ) % 4;
+            if ( $cls == 3 ) {
+                @against = ( $plys[0], $plys[1], $plys[2] );
+            }
+            elsif ( $cls == 0 ) {
+                @against = ( $plys[1], $plys[2], $plys[3] );
+            }
+            elsif ( $cls == 1 ) {
+                @against = ( $plys[2], $plys[3], $plys[0] );
+            }
+            elsif ( $cls == 2 ) {
+                @against = ( $plys[3], $plys[0], $plys[1] );
+            }
+        }
+        elsif ( $nrPlys == 5 ) {
+            my $cls = ( $game - 1 ) % 5;
+            if ( $cls == 0 ) {
+                @against = ( $plys[1], $plys[2], $plys[4] );
+            }
+            elsif ( $cls == 1 ) {
+                @against = ( $plys[2], $plys[3], $plys[0] );
+            }
+            elsif ( $cls == 2 ) {
+                @against = ( $plys[3], $plys[4], $plys[1] );
+            }
+            elsif ( $cls == 3 ) {
+                @against = ( $plys[4], $plys[0], $plys[2] );
+            }
+            elsif ( $cls == 4 ) {
+                @against = ( $plys[0], $plys[1], $plys[3] );
+            }
+        }
+        else {
+            if ($debug) { print "ERROR 004. Exiting..."; }
+            exit(1);
+        }
 
-		print "Mitspieler sind: @against.";
-		print "Wert ist: $val.";
+        # Validation 1
+        my $found = 0;
+        foreach my $el (@against) {
+            if ( $el eq $p ) {
+                $found = 1;
+            }
+        }
 
-		if ($kontra) {
-			print "Kontra wurde gegeben von: $kontra";
-		}
+        if ( !$found && !( $p eq 'E' ) ) {
+            print STDERR
+                "ERROR 001 ERROR! Alleinspieler $p nicht im aktuellen Spielersatz @against. Not exiting...";
+        }
 
-		print "\n";
-		print "CSV: \n";
-		print "$season, $day,,$p,$against[0],$against[1],$against[2],$val,$kontra";
-	}
+        if ($debug) {
+            print "Teilnehmende Spieler sind: @against.";
+            print "Wert ist: $val.";
+        }
+
+        if ($kontra) {
+
+            # Validation 2
+            my $found = 0;
+            foreach my $el (@against) {
+                if ( $el eq $kontra ) {
+                    $found = 1;
+                }
+            }
+            if ( !$found ) {
+                if ($debug) {
+                    print
+                        "ERROR 005. Kontraspieler $kontra nicht im aktuellen Spielersatz";
+                }
+            }
+
+            if ($debug) { print "Kontra wurde gegeben von: $kontra"; }
+        }
+
+        if ($debug) {
+            print "\n";
+            print "CSV: \n";
+        }
+
+        my $kontraCaught = $kontra ? $kontra : '';
+        my $betterGameNr = $game % $nrPlys;
+        if ( $betterGameNr == 0 ) {
+            $betterGameNr = $nrPlys;
+        }
+
+        print
+            "$season,$day,,$nrPlys,$betterGameNr,$p,$against[0],$against[1],$against[2],$val,$kontraCaught\n";
+    }
 }
