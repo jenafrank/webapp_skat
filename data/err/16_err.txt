@@ -1,0 +1,42 @@
+
+ Datei 1: 16/01_16.txt 
+
+ Datei 2: 16/02_16.txt 
+ERROR 001. 16/02/10. Alleinspieler P nicht im aktuellen Spielersatz F R A. 
+ERROR 001. 16/02/13. Alleinspieler A nicht im aktuellen Spielersatz P F R. 
+ERROR 001. 16/02/18. Alleinspieler P nicht im aktuellen Spielersatz F R A. 
+ERROR 001. 16/02/26. Alleinspieler P nicht im aktuellen Spielersatz F R A. 
+
+ Datei 3: 16/03_16.txt 
+ERROR 001. 16/03/11. Alleinspieler P nicht im aktuellen Spielersatz A T F. 
+ERROR 001. 16/03/16. Alleinspieler P nicht im aktuellen Spielersatz A T F. 
+ERROR 001. 16/03/19. Alleinspieler Ro nicht im aktuellen Spielersatz F P T. 
+ERROR 001. 16/03/21. Alleinspieler Ro nicht im aktuellen Spielersatz A T F. 
+ERROR 001. 16/03/22. Alleinspieler A nicht im aktuellen Spielersatz T Ro P. 
+ERROR 001. 16/03/26. Alleinspieler P nicht im aktuellen Spielersatz A T F. 
+ERROR 001. 16/03/29. Alleinspieler Ro nicht im aktuellen Spielersatz F P T. 
+ERROR 001. 16/03/34. Alleinspieler A nicht im aktuellen Spielersatz F P T. 
+ERROR 001. 16/03/35. Alleinspieler F nicht im aktuellen Spielersatz P A Ro. 
+ERROR 001. 16/03/37. Alleinspieler F nicht im aktuellen Spielersatz T Ro P. 
+ERROR 001. 16/03/39. Alleinspieler Ro nicht im aktuellen Spielersatz F P T. 
+ERROR 001. 16/03/40. Alleinspieler T nicht im aktuellen Spielersatz P A Ro. 
+
+ Datei 4: 16/04_16.txt 
+
+ Datei 5: 16/05_16.txt 
+
+ Datei 6: 16/06_16.txt 
+
+ Datei 7: 16/07_16.txt 
+
+ Datei 8: 16/08_16.txt 
+
+ Datei 9: 16/09_16.txt 
+
+ Datei 10: 16/10_16.txt 
+
+ Datei 11: 16/11_16.txt 
+
+ Datei 12: 16/12_16.txt 
+
+ Datei 13: 16/13_16.txt 

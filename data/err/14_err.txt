@@ -1,0 +1,61 @@
+
+ Datei 1: 14/01_14.txt 
+ERROR 001. 14/01/14. Alleinspieler R nicht im aktuellen Spielersatz A F P. 
+ERROR 001. 14/01/21. Alleinspieler P nicht im aktuellen Spielersatz R A F. 
+ERROR 001. 14/01/23. Alleinspieler A nicht im aktuellen Spielersatz F P R. 
+ERROR 001. 14/01/24. Alleinspieler F nicht im aktuellen Spielersatz P R A. 
+
+ Datei 2: 14/02_14.txt 
+ERROR 001. 14/02/13. Alleinspieler P nicht im aktuellen Spielersatz R F A. 
+ERROR 001. 14/02/16. Alleinspieler A nicht im aktuellen Spielersatz P R F. 
+ERROR 001. 14/02/20. Alleinspieler A nicht im aktuellen Spielersatz P R F. 
+ERROR 001. 14/02/23. Alleinspieler F nicht im aktuellen Spielersatz A P R. 
+ERROR 001. 14/02/27. Alleinspieler F nicht im aktuellen Spielersatz A P R. 
+ERROR 001. 14/02/31. Alleinspieler F nicht im aktuellen Spielersatz A P R. 
+ERROR 001. 14/02/32. Alleinspieler A nicht im aktuellen Spielersatz P R F. 
+
+ Datei 3: 14/04_14.txt 
+
+ Datei 4: 14/05_14.txt 
+
+ Datei 5: 14/06_14.txt 
+
+ Datei 6: 14/07_14.txt 
+ERROR 001. 14/07/14. Alleinspieler R nicht im aktuellen Spielersatz P A F. 
+ERROR 001. 14/07/15. Alleinspieler P nicht im aktuellen Spielersatz A F R. 
+ERROR 001. 14/07/17. Alleinspieler F nicht im aktuellen Spielersatz R P A. 
+ERROR 001. 14/07/18. Alleinspieler R nicht im aktuellen Spielersatz P A F. 
+ERROR 001. 14/07/19. Alleinspieler P nicht im aktuellen Spielersatz A F R. 
+ERROR 001. 14/07/23. Alleinspieler P nicht im aktuellen Spielersatz A F R. 
+ERROR 001. 14/07/26. Alleinspieler R nicht im aktuellen Spielersatz P A F. 
+
+ Datei 7: 14/08_14.txt 
+
+ Datei 8: 14/09_14.txt 
+ERROR 001. 14/09/20. Alleinspieler F nicht im aktuellen Spielersatz Pa R P. 
+ERROR 001. 14/09/23. Alleinspieler P nicht im aktuellen Spielersatz F Pa R. 
+ERROR 001. 14/09/25. Alleinspieler Pa nicht im aktuellen Spielersatz R P F. 
+
+ Datei 9: 14/10_14.txt 
+
+ Datei 10: 14/11_14.txt 
+
+ Datei 11: 14/12_14.txt 
+
+ Datei 12: 14/13_14.txt 
+ERROR 001. 14/13/1. Alleinspieler F nicht im aktuellen Spielersatz A R P. 
+ERROR 001. 14/13/12. Alleinspieler P nicht im aktuellen Spielersatz F A R. 
+ERROR 001. 14/13/13. Alleinspieler F nicht im aktuellen Spielersatz A R P. 
+ERROR 001. 14/13/14. Alleinspieler A nicht im aktuellen Spielersatz R P F. 
+ERROR 001. 14/13/16. Alleinspieler P nicht im aktuellen Spielersatz F A R. 
+ERROR 001. 14/13/17. Alleinspieler F nicht im aktuellen Spielersatz A R P. 
+ERROR 001. 14/13/20. Alleinspieler P nicht im aktuellen Spielersatz F A R. 
+ERROR 001. 14/13/22. Alleinspieler A nicht im aktuellen Spielersatz R P F. 
+ERROR 001. 14/13/24. Alleinspieler P nicht im aktuellen Spielersatz F A R. 
+ERROR 001. 14/13/28. Alleinspieler P nicht im aktuellen Spielersatz F A R. 
+
+ Datei 13: 14/14_14.txt 
+ERROR 001. 14/14/14. Alleinspieler R nicht im aktuellen Spielersatz F P A. 
+ERROR 001. 14/14/16. Alleinspieler P nicht im aktuellen Spielersatz A R F. 
+ERROR 001. 14/14/17. Alleinspieler A nicht im aktuellen Spielersatz R F P. 
+ERROR 001. 14/14/18. Alleinspieler R nicht im aktuellen Spielersatz F P A. 

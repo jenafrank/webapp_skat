@@ -1,0 +1,33 @@
+
+ Datei 1: 11/01_11.txt 
+ERROR 001. 11/01/12. Alleinspieler R nicht im aktuellen Spielersatz T A F. 
+
+ Datei 2: 11/02_11.txt 
+
+ Datei 3: 11/03_11.txt 
+
+ Datei 4: 11/04_11.txt 
+
+ Datei 5: 11/05_11.txt 
+
+ Datei 6: 11/06_11.txt 
+
+ Datei 7: 11/07_11.txt 
+
+ Datei 8: 11/08_11.txt 
+ERROR 001. 11/08/42. Alleinspieler R nicht im aktuellen Spielersatz T A F. 
+
+ Datei 9: 11/09_11.txt 
+ERROR 005. 11/09/14. Kontraspieler K nicht im aktuellen Spielersatz A R F. 
+
+ Datei 10: 11/10_11.txt 
+
+ Datei 11: 11/11_11.txt 
+ERROR 001. 11/11/11. Alleinspieler R nicht im aktuellen Spielersatz T A F. 
+ERROR 001. 11/11/13. Alleinspieler A nicht im aktuellen Spielersatz F R T. 
+ERROR 001. 11/11/14. Alleinspieler F nicht im aktuellen Spielersatz R T A. 
+ERROR 005. 11/11/16. Kontraspieler T nicht im aktuellen Spielersatz A F R. 
+
+ Datei 12: 11/12_11.txt 
+
+ Datei 13: 11/13_11.txt 

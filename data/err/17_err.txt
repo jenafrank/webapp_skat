@@ -1,0 +1,44 @@
+
+ Datei 1: 17/17_01.txt 
+
+ Datei 2: 17/17_02.txt 
+
+ Datei 3: 17/17_03.txt 
+
+ Datei 4: 17/17_04.txt 
+
+ Datei 5: 17/17_05.txt 
+
+ Datei 6: 17/17_06.txt 
+
+ Datei 7: 17/17_07.txt 
+
+ Datei 8: 17/17_08.txt 
+
+ Datei 9: 17/17_09.txt 
+
+ Datei 10: 17/17_10.txt 
+ERROR 001. 17/10/21. Alleinspieler P nicht im aktuellen Spielersatz R A F. 
+
+ Datei 11: 17/17_11.txt 
+
+ Datei 12: 17/17_12.txt 
+
+ Datei 13: 17/17_13.txt 
+
+ Datei 14: 17/17_14.txt 
+
+ Datei 15: 17/17_15.txt 
+
+ Datei 16: 17/17_16.txt 
+
+ Datei 17: 17/17_17..txt 
+ERROR 001. 17/17/18. Alleinspieler P nicht im aktuellen Spielersatz F A R. 
+ERROR 001. 17/17/19. Alleinspieler F nicht im aktuellen Spielersatz A R P. 
+ERROR 005. 17/17/21. Kontraspieler R nicht im aktuellen Spielersatz P F A. 
+ERROR 001. 17/17/23. Alleinspieler F nicht im aktuellen Spielersatz A R P. 
+
+ Datei 18: 17/17_18.txt 
+ERROR 001. 17/18/28. Alleinspieler R nicht im aktuellen Spielersatz A F P. 
+ERROR 001. 17/18/31. Alleinspieler P nicht im aktuellen Spielersatz R A F. 
+ERROR 001. 17/18/32. Alleinspieler R nicht im aktuellen Spielersatz A F P. 

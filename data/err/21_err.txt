@@ -1,0 +1,43 @@
+
+ Datei 1: 21/21_01.txt 
+
+ Datei 2: 21/21_02.txt 
+
+ Datei 3: 21/21_03.txt 
+
+ Datei 4: 21/21_04.txt 
+
+ Datei 5: 21/21_05.txt 
+
+ Datei 6: 21/21_06.txt 
+
+ Datei 7: 21/21_07.txt 
+
+ Datei 8: 21/21_08.txt 
+ERROR 001. 21/08/1. Alleinspieler A nicht im aktuellen Spielersatz R F P. 
+ERROR 001. 21/08/2. Alleinspieler R nicht im aktuellen Spielersatz F P A. 
+ERROR 001. 21/08/3. Alleinspieler F nicht im aktuellen Spielersatz P A R. 
+ERROR 001. 21/08/4. Alleinspieler P nicht im aktuellen Spielersatz A R F. 
+ERROR 001. 21/08/6. Alleinspieler R nicht im aktuellen Spielersatz F P A. 
+ERROR 001. 21/08/22. Alleinspieler R nicht im aktuellen Spielersatz F P A. 
+ERROR 001. 21/08/25. Alleinspieler A nicht im aktuellen Spielersatz R F P. 
+ERROR 001. 21/08/26. Alleinspieler R nicht im aktuellen Spielersatz F P A. 
+ERROR 001. 21/08/36. Alleinspieler P nicht im aktuellen Spielersatz A R F. 
+ERROR 001. 21/08/38. Alleinspieler R nicht im aktuellen Spielersatz F P A. 
+ERROR 001. 21/08/44. Alleinspieler P nicht im aktuellen Spielersatz A R F. 
+ERROR 001. 21/08/45. Alleinspieler A nicht im aktuellen Spielersatz R F P. 
+ERROR 001. 21/08/46. Alleinspieler R nicht im aktuellen Spielersatz F P A. 
+ERROR 001. 21/08/60. Alleinspieler P nicht im aktuellen Spielersatz A R F. 
+ERROR 001. 21/08/62. Alleinspieler R nicht im aktuellen Spielersatz F P A. 
+ERROR 001. 21/08/66. Alleinspieler R nicht im aktuellen Spielersatz F P A. 
+ERROR 001. 21/08/69. Alleinspieler A nicht im aktuellen Spielersatz R F P. 
+
+ Datei 9: 21/21_09.txt 
+ERROR 001. 21/09/10. Alleinspieler P nicht im aktuellen Spielersatz A F R. 
+ERROR 001. 21/09/12. Alleinspieler F nicht im aktuellen Spielersatz R P A. 
+ERROR 001. 21/09/16. Alleinspieler F nicht im aktuellen Spielersatz R P A. 
+ERROR 001. 21/09/18. Alleinspieler P nicht im aktuellen Spielersatz A F R. 
+
+ Datei 10: 21/21_10.txt 
+
+ Datei 11: 21/21_11.txt 

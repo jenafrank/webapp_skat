@@ -1,0 +1,82 @@
+
+ Datei 1: 19/19_01.txt 
+
+ Datei 2: 19/19_02.txt 
+ERROR 001. 19/02/19. Alleinspieler F nicht im aktuellen Spielersatz Od P M. 
+ERROR 001. 19/02/21. Alleinspieler P nicht im aktuellen Spielersatz M F Od. 
+
+ Datei 3: 19/19_03.txt 
+ERROR 001. 19/03/3. Alleinspieler P nicht im aktuellen Spielersatz M C F. 
+ERROR 001. 19/03/7. Alleinspieler C nicht im aktuellen Spielersatz P M R. 
+ERROR 001. 19/03/23. Alleinspieler P nicht im aktuellen Spielersatz M C F. 
+
+ Datei 4: 19/19_04.txt 
+ERROR 001. 19/04/11. Alleinspieler M nicht im aktuellen Spielersatz R Od C. 
+ERROR 001. 19/04/12. Alleinspieler R nicht im aktuellen Spielersatz Od P M. 
+ERROR 001. 19/04/14. Alleinspieler R nicht im aktuellen Spielersatz C M Od. 
+ERROR 001. 19/04/15. Alleinspieler Od nicht im aktuellen Spielersatz M R P. 
+ERROR 001. 19/04/16. Alleinspieler P nicht im aktuellen Spielersatz R Od C. 
+ERROR 001. 19/04/17. Alleinspieler R nicht im aktuellen Spielersatz Od P M. 
+ERROR 001. 19/04/19. Alleinspieler R nicht im aktuellen Spielersatz C M Od. 
+ERROR 001. 19/04/20. Alleinspieler C nicht im aktuellen Spielersatz M R P. 
+
+ Datei 5: 19/19_05.txt 
+
+ Datei 6: 19/19_06.txt 
+ERROR 001. 19/06/48. Alleinspieler Od nicht im aktuellen Spielersatz A P S. 
+ERROR SERIOUS-001. 19/06/48. Alleinspieler Od nicht im GESAMTEN Spielersatz A P S. 
+ERROR 001. 19/06/49. Alleinspieler A nicht im aktuellen Spielersatz P S Ro. 
+ERROR 001. 19/06/52. Alleinspieler Od nicht im aktuellen Spielersatz A P S. 
+ERROR SERIOUS-001. 19/06/52. Alleinspieler Od nicht im GESAMTEN Spielersatz A P S. 
+ERROR 001. 19/06/53. Alleinspieler A nicht im aktuellen Spielersatz P S Ro. 
+ERROR 001. 19/06/54. Alleinspieler P nicht im aktuellen Spielersatz S Ro A. 
+
+ Datei 7: 19/19_07.txt 
+ERROR 001. 19/07/2. Alleinspieler M nicht im aktuellen Spielersatz F P A. 
+ERROR SERIOUS-001. 19/07/2. Alleinspieler M nicht im GESAMTEN Spielersatz F P A. 
+ERROR 001. 19/07/4. Alleinspieler M nicht im aktuellen Spielersatz Od A F. 
+ERROR SERIOUS-001. 19/07/4. Alleinspieler M nicht im GESAMTEN Spielersatz Od A F. 
+ERROR 001. 19/07/5. Alleinspieler M nicht im aktuellen Spielersatz A R P. 
+ERROR SERIOUS-001. 19/07/5. Alleinspieler M nicht im GESAMTEN Spielersatz A R P. 
+ERROR 001. 19/07/14. Alleinspieler M nicht im aktuellen Spielersatz Od A F. 
+ERROR SERIOUS-001. 19/07/14. Alleinspieler M nicht im GESAMTEN Spielersatz Od A F. 
+ERROR 001. 19/07/15. Alleinspieler M nicht im aktuellen Spielersatz A R P. 
+ERROR SERIOUS-001. 19/07/15. Alleinspieler M nicht im GESAMTEN Spielersatz A R P. 
+ERROR 001. 19/07/20. Alleinspieler Od nicht im aktuellen Spielersatz A R P. 
+ERROR 001. 19/07/22. Alleinspieler M nicht im aktuellen Spielersatz F P A. 
+ERROR SERIOUS-001. 19/07/22. Alleinspieler M nicht im GESAMTEN Spielersatz F P A. 
+ERROR 001. 19/07/24. Alleinspieler R nicht im aktuellen Spielersatz Od A F. 
+ERROR 001. 19/07/25. Alleinspieler M nicht im aktuellen Spielersatz A R P. 
+ERROR SERIOUS-001. 19/07/25. Alleinspieler M nicht im GESAMTEN Spielersatz A R P. 
+ERROR 001. 19/07/26. Alleinspieler P nicht im aktuellen Spielersatz R F Od. 
+
+ Datei 8: 19/19_08.txt 
+
+ Datei 9: 19/19_09.txt 
+
+ Datei 10: 19/19_10.txt 
+ERROR 001. 19/10/4. Alleinspieler F nicht im aktuellen Spielersatz R P C. 
+ERROR 001. 19/10/6. Alleinspieler P nicht im aktuellen Spielersatz C F R. 
+ERROR 005. 19/10/8. Kontraspieler F nicht im aktuellen Spielersatz R P C. 
+ERROR 001. 19/10/10. Alleinspieler P nicht im aktuellen Spielersatz C F R. 
+ERROR 001. 19/10/11. Alleinspieler C nicht im aktuellen Spielersatz F R P. 
+ERROR 001. 19/10/15. Alleinspieler C nicht im aktuellen Spielersatz F R P. 
+ERROR 001. 19/10/17. Alleinspieler R nicht im aktuellen Spielersatz P C F. 
+ERROR 001. 19/10/18. Alleinspieler P nicht im aktuellen Spielersatz C F R. 
+ERROR 001. 19/10/21. Alleinspieler R nicht im aktuellen Spielersatz P C F. 
+
+ Datei 11: 19/19_11.txt 
+ERROR 001. 19/11/9. Alleinspieler R nicht im aktuellen Spielersatz P C Od. 
+ERROR 001. 19/11/13. Alleinspieler R nicht im aktuellen Spielersatz P C Od. 
+ERROR 001. 19/11/17. Alleinspieler R nicht im aktuellen Spielersatz P C Od. 
+ERROR 001. 19/11/18. Alleinspieler P nicht im aktuellen Spielersatz C Od R. 
+ERROR 001. 19/11/25. Alleinspieler R nicht im aktuellen Spielersatz P C Od. 
+ERROR 001. 19/11/27. Alleinspieler C nicht im aktuellen Spielersatz Od R P. 
+
+ Datei 12: 19/19_12.txt 
+ERROR 001. 19/12/15. Alleinspieler C nicht im aktuellen Spielersatz A R F. 
+ERROR 001. 19/12/20. Alleinspieler C nicht im aktuellen Spielersatz A R F. 
+ERROR 001. 19/12/24. Alleinspieler R nicht im aktuellen Spielersatz C A P. 
+ERROR 001. 19/12/29. Alleinspieler F nicht im aktuellen Spielersatz C A P. 
+
+ Datei 13: 19/19_13.txt 

@@ -1,0 +1,75 @@
+
+ Datei 1: 20/20_01.txt 
+ERROR 001. 20/01/9. Alleinspieler F nicht im aktuellen Spielersatz M P R. 
+ERROR 001. 20/01/12. Alleinspieler R nicht im aktuellen Spielersatz F M P. 
+ERROR 001. 20/01/15. Alleinspieler P nicht im aktuellen Spielersatz R F M. 
+ERROR 001. 20/01/16. Alleinspieler R nicht im aktuellen Spielersatz F M P. 
+ERROR 001. 20/01/19. Alleinspieler P nicht im aktuellen Spielersatz R F M. 
+ERROR 001. 20/01/20. Alleinspieler R nicht im aktuellen Spielersatz F M P. 
+ERROR 001. 20/01/23. Alleinspieler P nicht im aktuellen Spielersatz R F M. 
+ERROR 001. 20/01/27. Alleinspieler P nicht im aktuellen Spielersatz R F M. 
+ERROR 001. 20/01/28. Alleinspieler R nicht im aktuellen Spielersatz F M P. 
+
+ Datei 2: 20/20_02.txt 
+ERROR 001. 20/02/1. Alleinspieler J nicht im aktuellen Spielersatz R C M. 
+ERROR 001. 20/02/2. Alleinspieler R nicht im aktuellen Spielersatz C M J. 
+ERROR 001. 20/02/3. Alleinspieler C nicht im aktuellen Spielersatz M J R. 
+ERROR 001. 20/02/5. Alleinspieler J nicht im aktuellen Spielersatz R C M. 
+ERROR 001. 20/02/6. Alleinspieler R nicht im aktuellen Spielersatz C M J. 
+ERROR 001. 20/02/7. Alleinspieler C nicht im aktuellen Spielersatz M J R. 
+ERROR 001. 20/02/11. Alleinspieler C nicht im aktuellen Spielersatz M J R. 
+ERROR 001. 20/02/13. Alleinspieler J nicht im aktuellen Spielersatz R C M. 
+ERROR 001. 20/02/14. Alleinspieler R nicht im aktuellen Spielersatz C M J. 
+ERROR 001. 20/02/16. Alleinspieler M nicht im aktuellen Spielersatz J R C. 
+ERROR 001. 20/02/18. Alleinspieler R nicht im aktuellen Spielersatz C M J. 
+ERROR 001. 20/02/20. Alleinspieler M nicht im aktuellen Spielersatz J R C. 
+ERROR 001. 20/02/23. Alleinspieler C nicht im aktuellen Spielersatz M J R. 
+ERROR 001. 20/02/24. Alleinspieler M nicht im aktuellen Spielersatz J R C. 
+
+ Datei 3: 20/20_03.txt 
+ERROR 001. 20/03/11. Alleinspieler M nicht im aktuellen Spielersatz F R C. 
+ERROR 001. 20/03/12. Alleinspieler F nicht im aktuellen Spielersatz R C M. 
+ERROR 001. 20/03/15. Alleinspieler M nicht im aktuellen Spielersatz F R C. 
+ERROR 005. 20/03/17. Kontraspieler R nicht im aktuellen Spielersatz C M F. 
+ERROR 001. 20/03/18. Alleinspieler C nicht im aktuellen Spielersatz M F R. 
+ERROR 001. 20/03/21. Alleinspieler R nicht im aktuellen Spielersatz C M F. 
+
+ Datei 4: 20/20_04.txt 
+ERROR 001. 20/04/2. Alleinspieler P nicht im aktuellen Spielersatz F C M. 
+ERROR 001. 20/04/3. Alleinspieler F nicht im aktuellen Spielersatz C M P. 
+ERROR 001. 20/04/6. Alleinspieler P nicht im aktuellen Spielersatz F C M. 
+ERROR 001. 20/04/12. Alleinspieler C nicht im aktuellen Spielersatz M P F. 
+ERROR 001. 20/04/14. Alleinspieler P nicht im aktuellen Spielersatz F C M. 
+
+ Datei 5: 20/20_05.txt 
+
+ Datei 6: 20/20_06.txt 
+ERROR 001. 20/06/9. Alleinspieler R nicht im aktuellen Spielersatz J C F. 
+ERROR 001. 20/06/13. Alleinspieler R nicht im aktuellen Spielersatz J C F. 
+ERROR 001. 20/06/15. Alleinspieler C nicht im aktuellen Spielersatz F R J. 
+ERROR 001. 20/06/22. Alleinspieler J nicht im aktuellen Spielersatz C F R. 
+
+ Datei 7: 20/20_07.txt 
+
+ Datei 8: 20/20_08.txt 
+
+ Datei 9: 20/20_09.txt 
+
+ Datei 10: 20/20_10.txt 
+
+ Datei 11: 20/20_11.txt 
+ERROR 001. 20/11/5. Alleinspieler R nicht im aktuellen Spielersatz P F J. 
+
+ Datei 12: 20/20_12.txt 
+
+ Datei 13: 20/20_13.txt 
+ERROR 001. 20/13/14. Alleinspieler P nicht im aktuellen Spielersatz A M R. 
+ERROR 001. 20/13/22. Alleinspieler P nicht im aktuellen Spielersatz A M R. 
+ERROR 001. 20/13/23. Alleinspieler A nicht im aktuellen Spielersatz M R P. 
+
+ Datei 14: 20/20_14.txt 
+ERROR 001. 20/14/21. Alleinspieler M nicht im aktuellen Spielersatz A F R. 
+ERROR 001. 20/14/22. Alleinspieler R nicht im aktuellen Spielersatz F P M. 
+ERROR 001. 20/14/23. Alleinspieler M nicht im aktuellen Spielersatz P R A. 
+ERROR 001. 20/14/27. Alleinspieler R nicht im aktuellen Spielersatz F P M. 
+ERROR 001. 20/14/29. Alleinspieler A nicht im aktuellen Spielersatz R M F. 

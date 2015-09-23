@@ -1,0 +1,30 @@
+
+ Datei 1: 10/01_10.txt 
+
+ Datei 2: 10/02_10.txt 
+
+ Datei 3: 10/03_10.txt 
+
+ Datei 4: 10/04_10.txt 
+
+ Datei 5: 10/05_10.txt 
+ERROR 001. 10/05/18. Alleinspieler A nicht im aktuellen Spielersatz T F Ro. 
+ERROR 001. 10/05/23. Alleinspieler A nicht im aktuellen Spielersatz T F Ro. 
+
+ Datei 6: 10/06_10.txt 
+
+ Datei 7: 10/07_10.txt 
+ERROR 001. 10/07/21. Alleinspieler R nicht im aktuellen Spielersatz F T A. 
+
+ Datei 8: 10/08_10.txt 
+
+ Datei 9: 10/09_10.txt 
+ERROR 001. 10/09/12. Alleinspieler R nicht im aktuellen Spielersatz A T F. 
+
+ Datei 10: 10/10_10.txt 
+
+ Datei 11: 10/11_10.txt 
+
+ Datei 12: 10/12_10.txt 
+
+ Datei 13: 10/13_10.txt 

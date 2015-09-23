@@ -1,0 +1,67 @@
+
+ Datei 1: 12/01_12.txt 
+
+ Datei 2: 12/02_12.txt 
+ERROR 001. 12/02/13. Alleinspieler A nicht im aktuellen Spielersatz F T R. 
+ERROR 001. 12/02/20. Alleinspieler R nicht im aktuellen Spielersatz A F T. 
+ERROR 001. 12/02/24. Alleinspieler R nicht im aktuellen Spielersatz A F T. 
+
+ Datei 3: 12/03_12.txt 
+
+ Datei 4: 12/04_12.txt 
+
+ Datei 5: 12/05_12.txt 
+ERROR 005. 12/05/10. Kontraspieler T nicht im aktuellen Spielersatz P F R. 
+ERROR 001. 12/05/11. Alleinspieler P nicht im aktuellen Spielersatz F R T. 
+ERROR 001. 12/05/21. Alleinspieler R nicht im aktuellen Spielersatz T P F. 
+ERROR 001. 12/05/28. Alleinspieler F nicht im aktuellen Spielersatz R T P. 
+ERROR 001. 12/05/29. Alleinspieler R nicht im aktuellen Spielersatz T P F. 
+ERROR 001. 12/05/34. Alleinspieler T nicht im aktuellen Spielersatz P F R. 
+ERROR 001. 12/05/36. Alleinspieler F nicht im aktuellen Spielersatz R T P. 
+
+ Datei 6: 12/06_12.txt 
+ERROR 001. 12/06/16. Alleinspieler P nicht im aktuellen Spielersatz R F A. 
+ERROR 001. 12/06/21. Alleinspieler R nicht im aktuellen Spielersatz F A P. 
+ERROR 001. 12/06/26. Alleinspieler F nicht im aktuellen Spielersatz A P R. 
+
+ Datei 7: 12/07_12.txt 
+
+ Datei 8: 12/08_12.txt 
+
+ Datei 9: 12/09_12.txt 
+
+ Datei 10: 12/10_12.txt 
+
+ Datei 11: 12/11_12.txt 
+ERROR 001. 12/11/14. Alleinspieler A nicht im aktuellen Spielersatz F T P. 
+ERROR 001. 12/11/20. Alleinspieler T nicht im aktuellen Spielersatz P A F. 
+ERROR 001. 12/11/21. Alleinspieler P nicht im aktuellen Spielersatz A F T. 
+ERROR 001. 12/11/25. Alleinspieler P nicht im aktuellen Spielersatz A F T. 
+ERROR 001. 12/11/28. Alleinspieler T nicht im aktuellen Spielersatz P A F. 
+
+ Datei 12: 12/12_12.txt 
+ERROR 001. 12/12/6. Alleinspieler A nicht im aktuellen Spielersatz P F T. 
+ERROR 001. 12/12/8. Alleinspieler R nicht im aktuellen Spielersatz A T P. 
+ERROR 001. 12/12/9. Alleinspieler P nicht im aktuellen Spielersatz T R F. 
+ERROR 001. 12/12/21. Alleinspieler A nicht im aktuellen Spielersatz P F T. 
+ERROR 001. 12/12/24. Alleinspieler A nicht im aktuellen Spielersatz T R F. 
+ERROR 001. 12/12/25. Alleinspieler F nicht im aktuellen Spielersatz R P A. 
+ERROR 001. 12/12/27. Alleinspieler P nicht im aktuellen Spielersatz F A R. 
+ERROR 001. 12/12/30. Alleinspieler F nicht im aktuellen Spielersatz R P A. 
+ERROR 001. 12/12/31. Alleinspieler R nicht im aktuellen Spielersatz P F T. 
+
+ Datei 13: 12/13_12.txt 
+
+ Datei 14: 12/14_12.txt 
+ERROR 001. 12/14/11. Alleinspieler R nicht im aktuellen Spielersatz T P F. 
+ERROR 001. 12/14/12. Alleinspieler F nicht im aktuellen Spielersatz P A R. 
+ERROR 001. 12/14/17. Alleinspieler F nicht im aktuellen Spielersatz P A R. 
+ERROR 001. 12/14/19. Alleinspieler T nicht im aktuellen Spielersatz F R P. 
+ERROR 001. 12/14/20. Alleinspieler F nicht im aktuellen Spielersatz R T A. 
+ERROR 001. 12/14/22. Alleinspieler F nicht im aktuellen Spielersatz P A R. 
+ERROR 001. 12/14/23. Alleinspieler P nicht im aktuellen Spielersatz A F T. 
+ERROR 001. 12/14/24. Alleinspieler A nicht im aktuellen Spielersatz F R P. 
+ERROR 001. 12/14/26. Alleinspieler A nicht im aktuellen Spielersatz T P F. 
+ERROR 001. 12/14/28. Alleinspieler R nicht im aktuellen Spielersatz A F T. 
+ERROR 001. 12/14/29. Alleinspieler T nicht im aktuellen Spielersatz F R P. 
+ERROR 001. 12/14/30. Alleinspieler F nicht im aktuellen Spielersatz R T A. 
