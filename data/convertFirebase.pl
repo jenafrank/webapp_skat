@@ -104,6 +104,7 @@ for ( my $i = 0; $i < $nrArg; $i++ ) {
         my $p      = $1;
         my $val    = $2;
         my $kontra = $3;
+        my $error  = "";
 
         #parse line if valid
 
@@ -185,13 +186,18 @@ for ( my $i = 0; $i < $nrArg; $i++ ) {
             }
 
             if ( !$found && !( $p eq 'E' ) ) {
-                print STDERR
-                    "ERROR 001. $season/$day/$id. Alleinspieler $p nicht im aktuellen Spielersatz @against. \n";
+                my $errstr
+                    = "ERROR 001. $season/$day/$id. Alleinspieler $p nicht im aktuellen Spielersatz @against. \n";
+                print STDERR $errstr;
+                $error = $error . $errstr;
             }
 
             if ( !$foundAll && !( $p eq 'E' ) ) {
-                print STDERR
-                    "ERROR SERIOUS-001. $season/$day/$id. Alleinspieler $p nicht im GESAMTEN Spielersatz @against. \n";
+                my $errstr
+                    = "ERROR SERIOUS-001. $season/$day/$id. Alleinspieler $p nicht im GESAMTEN Spielersatz @against. \n";
+                print STDERR $errstr;
+                $error = $error . $errstr;
+
             }
 
             if ($debug) {
@@ -209,8 +215,10 @@ for ( my $i = 0; $i < $nrArg; $i++ ) {
                     }
                 }
                 if ( !$found ) {
-                    print STDERR
-                        "ERROR 005. $season/$day/$id. Kontraspieler $kontra nicht im aktuellen Spielersatz @against. \n";
+                    my $errstr
+                        = "ERROR 005. $season/$day/$id. Kontraspieler $kontra nicht im aktuellen Spielersatz @against. \n";
+                    print STDERR $errstr;
+                    $error = $error . $errstr;
                 }
 
                 if ($debug) { print "Kontra wurde gegeben von: $kontra"; }
@@ -240,11 +248,12 @@ for ( my $i = 0; $i < $nrArg; $i++ ) {
                 {   time        => "",
                     declarer    => $p,
                     points      => $val,
-                    activeThree => join(' ',@against),
+                    activeThree => join( ' ', @against ),
                     kontra      => $kontraCaught,
                     nrPlayers   => $nrPlys,
                     mod         => $betterGameNr,
-                    allPlayers  => join(' ',@sortedPlayers)
+                    allPlayers  => join( ' ', @sortedPlayers ),
+                    error       => $error
                 }
             );
         }
