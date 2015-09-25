@@ -1,0 +1,15 @@
+####
+
+conversion is done in 2 steps:
+
+step 1
+
+convert via perl script from skat data format (SDF) into CSV
+
+step 2
+
+convert CSV via node package named csvtojson into JSON
+following command is used:
+
+csvtojson 19.txt --noheader=true --headers='["season","day","game","time","players","mod","player","p1","p2","p3","allPlayers","val","kontra"]'
+
