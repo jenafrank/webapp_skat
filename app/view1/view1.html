@@ -1,3 +1,19 @@
+<!-- Video -->
+<video autoplay="autoplay" loop="loop" autobuffer="autobuffer" muted="muted" width="640" height="360">
+    <source src="freeLights.mp4" type="video/mp4"/>
+</video>
+
+<!-- Bubbles -->
+<div id="bubbles">
+    <button id="bubble1" ng-click="$root.showInfo('1');" class="bubble1 x1">
+    </button>
+    <button id="bubble2" ng-click="$root.showInfo('2');" class="bubble2 x2">
+    </button>
+    <button id="bubble3" ng-click="$root.showInfo('3');" class="bubble3 x3">
+    </button>
+</div>
+
+<!-- Right side content -->
 <div class="row">
     <div class="col-sm-6">
     </div>
@@ -24,7 +40,12 @@
                 </h1>
             </div>
 
-            <h3 class="line3">coming soon</h3>
+            <h3 class="line3">
+                <a class="btn btn-lg btn-success"
+                   href="#/start">
+                    Enter
+                </a>
+            </h3>
 
             <div style="height:100px;">
                 <div class="well" ng-show="$root.isOn">

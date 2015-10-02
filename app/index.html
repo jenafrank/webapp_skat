@@ -23,22 +23,6 @@
 </head>
 <body>
 
-<!-- HTML5 Video Code "Video For Everybody" http://camendesign.com/code/video_for_everybody -->
-<video autoplay="autoplay" loop="loop" autobuffer="autobuffer" muted="muted" width="640" height="360">
-    <source src="freeLights.mp4" type="video/mp4"/>
-</video>
-
-<!-- Bubbles -->
-
-<div id="bubbles">
-    <button id="bubble1" ng-click="$root.showInfo('1');" class="bubble1 x1">
-    </button>
-    <button id="bubble2" ng-click="$root.showInfo('2');" class="bubble2 x2">
-    </button>
-    <button id="bubble3" ng-click="$root.showInfo('3');" class="bubble3 x3">
-    </button>
-</div>
-
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
@@ -54,6 +38,7 @@
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="app.js"></script>
 <script src="view1/view1.js"></script>
 <script src="view2/view2.js"></script>

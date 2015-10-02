@@ -1,5 +1,25 @@
-<p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
+<p>Skat Statistics.</p>
+
+<table class="table-striped">
+  <thead>
+  <tr>
+    <td>
+      Name
+    </td>
+    <td>
+      Punkte
+    </td>
+  </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="el in arrays.ronaldPunkte | orderBy: '-value'">
+      <td>{{el.name}}</td>
+      <td>{{el.value}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre>
+  {{results | json}}
+</pre>
+
