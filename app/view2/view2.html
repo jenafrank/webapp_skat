@@ -1,25 +1,19 @@
 <p>Skat Statistics.</p>
 
-<table class="table-striped">
-  <thead>
-  <tr>
-    <td>
-      Name
-    </td>
-    <td>
-      Punkte
-    </td>
-  </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="el in arrays.ronaldPunkte | orderBy: '-value'">
-      <td>{{el.name}}</td>
-      <td>{{el.value}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col-sm-4">
+    <div ng-repeat="el in nameOfStatId">
+      <button class="btn btn-default" role="button" ng-click="render(el.key, el.prec);">
+        {{el.name}}
+      </button>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <renderZone>
+    </renderZone>
+  </div>
+</div>
 
-<pre>
-  {{results | json}}
-</pre>
+
+
 
