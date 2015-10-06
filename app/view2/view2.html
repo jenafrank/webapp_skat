@@ -1,17 +1,18 @@
 <p>Skat Statistics.</p>
 
 <div class="row">
-  <div class="col-sm-4">
-    <div ng-repeat="el in nameOfStatId">
-      <button class="btn btn-default" role="button" ng-click="render(el.key, el.prec);">
-        {{el.name}}
-      </button>
+    <div class="col-sm-4">
+        <div class="btn-group-vertical" role="group">
+            <button ng-repeat="el in nameOfStatId" class="btn btn-default" type="button"
+                    ng-click="renderFollowUp(el.key, el.prec, el.suffix);">
+                {{el.name}}
+            </button>
+        </div>
     </div>
-  </div>
-  <div class="col-sm-8">
-    <renderZone>
-    </renderZone>
-  </div>
+    <div class="col-sm-8">
+        <renderZone>
+        </renderZone>
+    </div>
 </div>
 
 

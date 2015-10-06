@@ -26,6 +26,7 @@ angular.module('myApp.view2', ['ngRoute'])
             gesGegen: {},
             ratioGegen: {},
             ratioAllein: {},
+            ratioGespielt: {},
             ronaldFaktor: {},
             ratioPPT: {},
             ronaldGedeckelt: {},
@@ -41,6 +42,7 @@ angular.module('myApp.view2', ['ngRoute'])
 
         $scope.nameOfStatId = [];
         $scope.render = render;
+        $scope.renderFollowUp = renderFollowUp;
 
         var x = $scope.results;
         var y = $scope.arrays;
@@ -52,6 +54,7 @@ angular.module('myApp.view2', ['ngRoute'])
             myFirebaseRef.child("/").on("value", function (snapshot) {
                 $scope.games = snapshot.val();
                 calculateResults();
+                render("ronaldPunkte", 0);
                 $scope.$apply();
             });
         }
@@ -63,8 +66,9 @@ angular.module('myApp.view2', ['ngRoute'])
             // Auswertung der akkumulierten Spieldaten
             $scope.results.refGames = max($scope.results.teil);
             for (var el in x.teil) {
-                x.ratioGegen[el] = x.gewGegen[el] / x.gesGegen[el];
-                x.ratioAllein[el] = x.gew[el] / x.ges[el];
+                x.ratioGegen[el] = x.gewGegen[el] / x.gesGegen[el] * 100.;
+                x.ratioAllein[el] = x.gew[el] / x.ges[el] * 100.;
+                x.ratioGespielt[el] = x.ges[el] / x.teil[el] * 100.;
                 x.ronaldFaktor[el] = x.refGames / x.teil[el];
                 x.ronaldGedeckelt[el] = x.ronaldFaktor[el] > 3 ? 3 : x.ronaldFaktor[el];
                 x.ronaldPunkte[el] = x.ronaldGedeckelt[el] * x.val[el];
@@ -83,17 +87,24 @@ angular.module('myApp.view2', ['ngRoute'])
             console.log(y);
 
             $scope.nameOfStatId = [
-                {name: "ratioGegen", key: "ratioGegen", prec: 2},
-                {name: "ratioAllein", key: "ratioAllein", prec: 2},
+                {name: "ratioGegen", key: "ratioGegen", prec: 1, suffix: " %"},
+                {name: "ratioAllein", key: "ratioAllein", prec: 1, suffix: " %"},
+                {name: "ratioGespielt", key: "ratioGespielt", prec: 1, suffix: " %"},
                 {name: "ronaldFaktor", key: "ronaldFaktor", prec: 2},
                 {name: "ronaldGedeckelt", key: "ronaldGedeckelt", prec: 2},
                 {name: "ronaldPunkte", key: "ronaldPunkte", prec: 0},
-                {name: "verGegen", key: "verGegen", prec: 2},
-                {name: "ver", key: "ver", prec: 2},
+                {name: "verGegen", key: "verGegen", prec: 0},
+                {name: "ver", key: "ver", prec: 0},
+                {name: "gewGegen", key: "gewGegen", prec: 0},
+                {name: "gew", key: "gew", prec: 0},
+                {name: "gesGegen", key: "gesGegen", prec: 0},
+                {name: "ges", key: "ges", prec: 0},
+                {name: "val", key: "val", prec: 0},
                 {name: "turnierPunkte", key: "turnierPunkte", prec: 0},
                 {name: "turnierRonaldPunkte", key: "turnierRonaldPunkte", prec: 0},
-                {name: "turnierPPT", key: "turnierPPT", prec: 2},
-                {name: "ratioPPT", key: "ratioPPT", prec: 2}
+                {name: "turnierPPT", key: "turnierPPT", prec: 1},
+                {name: "ratioPPT", key: "ratioPPT", prec: 1},
+                {name: "teilgenommen", key: "teil", prec: 0}
             ];
         }
 
@@ -174,10 +185,10 @@ angular.module('myApp.view2', ['ngRoute'])
 
         // ---- D3 rendering
 
-        function render(yQuantity, prec) {
+        function render(yQuantity, prec, suffix) {
 
             var w = 600;
-            var h = 300;
+            var h = 500;
 
             var dataset = y[yQuantity];
 
@@ -199,8 +210,8 @@ angular.module('myApp.view2', ['ngRoute'])
             };
 
             // Remove SVG Element
-            var svgElement = d3.select("svg");
-            svgElement.remove();
+            // var svgElement = d3.select("svg");
+            // svgElement.remove();
 
             //Create SVG element
             var svg = d3.select("renderZone")
@@ -237,7 +248,11 @@ angular.module('myApp.view2', ['ngRoute'])
                 .enter()
                 .append("text")
                 .text(function (d) {
-                    return d3.round(d.value,prec);
+                    var ret = d3.round(d.value, prec);
+                    if (suffix) {
+                        ret = ret + suffix;
+                    }
+                    return ret;
                 })
                 .attr("class", "one")
                 .attr("text-anchor", "end")
@@ -290,5 +305,82 @@ angular.module('myApp.view2', ['ngRoute'])
                     return yScale(i) + yScale.rangeBand() * 5 / 6;
                 });
 
+        }
+
+        function renderFollowUp(yQuantity, prec, suffix) {
+
+            var w = 600;
+            var h = 500;
+
+            var dataset = y[yQuantity];
+
+            var svg = d3.select("renderZone");
+
+            var colors = d3.scale.category10().
+                domain(['A', 'F', 'R', 'P', 'S', 'Ro', 'Od', 'T']);
+
+            var yScale = d3.scale.ordinal()
+                .domain(d3.range(dataset.length))
+                .rangeRoundBands([0, h], 0.15);
+
+            var xScale = d3.scale.linear()
+                .domain([0, d3.max(dataset, function (d) {
+                    return d.value;
+                })])
+                .range([0, w - 10]);
+
+            var sortItems = function (a, b) {
+                return b.value - a.value;
+            };
+
+            var key = function (d) {
+                return d.name;
+            };
+
+            // d3-sort the array
+            svg.selectAll("rect")
+                .data(dataset, key)
+                .sort(sortItems)
+                .transition()
+                .attr("x", 0)
+                .attr("width", function (d) {
+                    return xScale(d.value);
+                })
+                .attr("height", yScale.rangeBand())
+                .attr("y", function (d, i) {
+                    return yScale(i);
+                });
+
+            // d3-sort array 2
+            svg.selectAll("text.one")
+                .data(dataset, key)
+                .sort(sortItems)
+                .transition()
+                .text(function (d) {
+                    var ret = d3.round(d.value, prec);
+                    if (suffix) {
+                        ret = ret + suffix;
+                    }
+                    return ret;
+                })
+                .attr("x", function (d, i) {
+                    return xScale(d.value) - 2;
+                })
+                .attr("y", function (d, i) {
+                    return yScale(i) + yScale.rangeBand() * 5 / 6;
+                });
+
+            // d3-sort array 3
+            svg.selectAll("text.two")
+                .data(dataset, key)
+                .sort(sortItems)
+                .transition()
+                .text(function (d) {
+                    return d.name;
+                })
+                .attr("x", 2)
+                .attr("y", function (d, i) {
+                    return yScale(i) + yScale.rangeBand() * 5 / 6;
+                });
         }
     }]);
