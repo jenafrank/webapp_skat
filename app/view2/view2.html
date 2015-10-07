@@ -1,7 +1,15 @@
 <p>Skat Statistics.</p>
 
 <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-2">
+        <div class="btn-group-vertical" role="group">
+            <button ng-repeat="el in nameOfSeasons" class="btn btn-default" type="button"
+                    ng-click="initSeason(el.key);">
+                {{el.name}}
+            </button>
+        </div>
+    </div>
+    <div class="col-sm-3">
         <div class="btn-group-vertical" role="group">
             <button ng-repeat="el in nameOfStatId" class="btn btn-default" type="button"
                     ng-click="renderFollowUp(el.key, el.prec, el.suffix);">
@@ -9,7 +17,7 @@
             </button>
         </div>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-7">
         <renderZone>
         </renderZone>
     </div>

@@ -11,55 +11,84 @@ angular.module('myApp.view2', ['ngRoute'])
 
     .controller('View2Ctrl', ['$scope', function ($scope) {
 
+        var url = "https://luminous-inferno-9676.firebaseio.com";
+        var myFirebaseRef = new Firebase(url);
+
         $scope.isVisible = false;
         $scope.text = "Mein Text";
         $scope.games = [];
+        $scope.initSeason = initSeason;
 
-        $scope.results = {
-            val: {},
-            teil: {},
-            ver: {},
-            gew: {},
-            ges: {},
-            verGegen: {},
-            gewGegen: {},
-            gesGegen: {},
-            ratioGegen: {},
-            ratioAllein: {},
-            ratioGespielt: {},
-            ronaldFaktor: {},
-            ratioPPT: {},
-            ronaldGedeckelt: {},
-            ronaldPunkte: {},
-            turnierPunkte: {},
-            turnierRonaldPunkte: {},
-            turnierPPT: {}
-        };
+        $scope.nameOfStatId = [
+            {name: "GS: Gewonnen pro Spiel", key: "ratioGegen", prec: 1, suffix: " %"},
+            {name: "Gewonnen pro Spiel", key: "ratioAllein", prec: 1, suffix: " %"},
+            {name: "Spiele pro Teilgenommen", key: "ratioGespielt", prec: 1, suffix: " %"},
+            {name: "Ronald-Faktor", key: "ronaldFaktor", prec: 2},
+            {name: "Deckel-Faktor", key: "ronaldGedeckelt", prec: 2},
+            {name: "Punkte", key: "ronaldPunkte", prec: 0},
+            {name: "GS: Verloren", key: "verGegen", prec: 0},
+            {name: "Verloren", key: "ver", prec: 0},
+            {name: "GS: Gewonnen", key: "gewGegen", prec: 0},
+            {name: "Gewonnen", key: "gew", prec: 0},
+            {name: "GS: Teilgenommen", key: "gesGegen", prec: 0},
+            {name: "Teilgenommen", key: "ges", prec: 0},
+            {name: "Echte Punkte", key: "val", prec: 0},
+            {name: "Echte Turnier-Punkte", key: "turnierPunkte", prec: 0},
+            {name: "Turnierpunkte", key: "turnierRonaldPunkte", prec: 0},
+            {name: "Turnierpunkte pro Spiel", key: "turnierPPT", prec: 1},
+            {name: "Punkte pro Spiel", key: "ratioPPT", prec: 1},
+            {name: "Teilgenommen", key: "teil", prec: 0}
+        ];
+
+        $scope.nameOfSeasons = [
+            {key: 22, name: "Saison 22", info: ""},
+            {key: 21, name: "Saison 21", info: ""},
+            {key: 20, name: "Saison 20", info: ""},
+            {key: 19, name: "Saison 19", info: ""},
+            {key: 18, name: "Saison 18", info: ""},
+            {key: 17, name: "Saison 17", info: ""},
+            {key: 16, name: "Saison 16", info: ""},
+            {key: 15, name: "Saison 15", info: ""},
+            {key: 14, name: "Saison 14", info: ""},
+            {key: 13, name: "Saison 13", info: ""},
+            {key: 12, name: "Saison 12", info: ""},
+            {key: 11, name: "Saison 11", info: ""},
+            {key: 10, name: "Saison 10", info: ""}
+        ];
 
         $scope.arrays = {
             ronaldPunkte: []
         };
 
-        $scope.nameOfStatId = [];
         $scope.render = render;
         $scope.renderFollowUp = renderFollowUp;
-
-        var x = $scope.results;
-        var y = $scope.arrays;
 
         activate();
 
         function activate() {
-            var myFirebaseRef = new Firebase("https://luminous-inferno-9676.firebaseio.com/season_22");
-            myFirebaseRef.child("/").on("value", function (snapshot) {
+            initSeason("22","initFirstTime");
+        }
+
+        function initSeason(season,mode) {
+            myFirebaseRef.child("season_"+season).on("value", function (snapshot) {
+
                 $scope.games = snapshot.val();
+
                 calculateResults();
+
                 render("ronaldPunkte", 0);
+
                 $scope.$apply();
+                myFirebaseRef.child("season_"+season).off("value");
             });
         }
 
         function calculateResults() {
+
+            $scope.results = results();
+            var x = $scope.results;
+            var y = $scope.arrays;
+
             // Akkumuliere einzelne Spiele
             traverse($scope.games, process);
 
@@ -85,27 +114,6 @@ angular.module('myApp.view2', ['ngRoute'])
                 y[attr] = json2array(x[attr]);
             }
             console.log(y);
-
-            $scope.nameOfStatId = [
-                {name: "ratioGegen", key: "ratioGegen", prec: 1, suffix: " %"},
-                {name: "ratioAllein", key: "ratioAllein", prec: 1, suffix: " %"},
-                {name: "ratioGespielt", key: "ratioGespielt", prec: 1, suffix: " %"},
-                {name: "ronaldFaktor", key: "ronaldFaktor", prec: 2},
-                {name: "ronaldGedeckelt", key: "ronaldGedeckelt", prec: 2},
-                {name: "ronaldPunkte", key: "ronaldPunkte", prec: 0},
-                {name: "verGegen", key: "verGegen", prec: 0},
-                {name: "ver", key: "ver", prec: 0},
-                {name: "gewGegen", key: "gewGegen", prec: 0},
-                {name: "gew", key: "gew", prec: 0},
-                {name: "gesGegen", key: "gesGegen", prec: 0},
-                {name: "ges", key: "ges", prec: 0},
-                {name: "val", key: "val", prec: 0},
-                {name: "turnierPunkte", key: "turnierPunkte", prec: 0},
-                {name: "turnierRonaldPunkte", key: "turnierRonaldPunkte", prec: 0},
-                {name: "turnierPPT", key: "turnierPPT", prec: 1},
-                {name: "ratioPPT", key: "ratioPPT", prec: 1},
-                {name: "teilgenommen", key: "teil", prec: 0}
-            ];
         }
 
         function acc(key, attr, value) {
@@ -183,6 +191,29 @@ angular.module('myApp.view2', ['ngRoute'])
             }
         }
 
+        function results() {
+            return {
+                val: {},
+                teil: {},
+                ver: {},
+                gew: {},
+                ges: {},
+                verGegen: {},
+                gewGegen: {},
+                gesGegen: {},
+                ratioGegen: {},
+                ratioAllein: {},
+                ratioGespielt: {},
+                ronaldFaktor: {},
+                ratioPPT: {},
+                ronaldGedeckelt: {},
+                ronaldPunkte: {},
+                turnierPunkte: {},
+                turnierRonaldPunkte: {},
+                turnierPPT: {}
+            };
+        }
+
         // ---- D3 rendering
 
         function render(yQuantity, prec, suffix) {
@@ -190,7 +221,7 @@ angular.module('myApp.view2', ['ngRoute'])
             var w = 600;
             var h = 500;
 
-            var dataset = y[yQuantity];
+            var dataset = $scope.arrays[yQuantity];
 
             var colors = d3.scale.category10().
                 domain(['A', 'F', 'R', 'P', 'S', 'Ro', 'Od', 'T']);
@@ -210,8 +241,10 @@ angular.module('myApp.view2', ['ngRoute'])
             };
 
             // Remove SVG Element
-            // var svgElement = d3.select("svg");
-            // svgElement.remove();
+            var svgElement = d3.select("svg");
+            if (svgElement) {
+                svgElement.remove();
+            }
 
             //Create SVG element
             var svg = d3.select("renderZone")
@@ -312,7 +345,7 @@ angular.module('myApp.view2', ['ngRoute'])
             var w = 600;
             var h = 500;
 
-            var dataset = y[yQuantity];
+            var dataset = $scope.arrays[yQuantity];
 
             var svg = d3.select("renderZone");
 
