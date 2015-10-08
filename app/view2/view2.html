@@ -2,24 +2,49 @@
 
 <div class="row">
     <div class="col-sm-2">
-        <div class="btn-group-vertical" role="group">
-            <button ng-repeat="el in nameOfSeasons" class="btn btn-default" type="button"
-                    ng-click="initSeason(el.key);">
-                {{el.name}}
-            </button>
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                Saison
+            </div>
+            <div class="panel-body">
+                <div class="btn-group-vertical" role="group" style="width: 100%;">
+                    <button style="width:100%;"
+                            ng-repeat="el in nameOfSeasons" class="btn btn-default" type="button"
+                            ng-click="clickSeason(el);">
+                        {{el.name}}
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-sm-3">
-        <div class="btn-group-vertical" role="group">
-            <button ng-repeat="el in nameOfStatId" class="btn btn-default" type="button"
-                    ng-click="renderFollowUp(el.key, el.prec, el.suffix);">
-                {{el.name}}
-            </button>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Auswertung
+            </div>
+            <div class="panel-body">
+                <div class="btn-group-vertical" role="group" style="width:100%">
+                    <button style="width:100%;"
+                            ng-repeat="el in nameOfStatId" class="btn btn-default" type="button"
+                            ng-click="clickQuantity(el);">
+                        {{el.name}}
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-sm-7">
-        <renderZone>
-        </renderZone>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                Test
+                <span>{{currentSeason.name}}</span>
+                <span style="float:right;">{{currentQuantity.name}}</span>
+            </div>
+            <div class="panel-body">
+                <renderZone>
+                </renderZone>
+            </div>
+        </div>
     </div>
 </div>
 

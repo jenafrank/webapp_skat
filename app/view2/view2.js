@@ -18,6 +18,8 @@ angular.module('myApp.view2', ['ngRoute'])
         $scope.text = "Mein Text";
         $scope.games = [];
         $scope.initSeason = initSeason;
+        $scope.clickSeason = clickSeason;
+        $scope.clickQuantity = clickQuantity;
 
         $scope.nameOfStatId = [
             {name: "GS: Gewonnen pro Spiel", key: "ratioGegen", prec: 1, suffix: " %"},
@@ -39,7 +41,6 @@ angular.module('myApp.view2', ['ngRoute'])
             {name: "Punkte pro Spiel", key: "ratioPPT", prec: 1},
             {name: "Teilgenommen", key: "teil", prec: 0}
         ];
-
         $scope.nameOfSeasons = [
             {key: 22, name: "Saison 22", info: ""},
             {key: 21, name: "Saison 21", info: ""},
@@ -56,6 +57,9 @@ angular.module('myApp.view2', ['ngRoute'])
             {key: 10, name: "Saison 10", info: ""}
         ];
 
+        $scope.currentSeason = $scope.nameOfSeasons[0];
+        $scope.currentQuantity = $scope.nameOfStatId[0];
+
         $scope.arrays = {
             ronaldPunkte: []
         };
@@ -66,20 +70,27 @@ angular.module('myApp.view2', ['ngRoute'])
         activate();
 
         function activate() {
-            initSeason("22","initFirstTime");
+            clickSeason($scope.currentSeason, function() {
+                clickQuantity($scope.currentQuantity);
+            });
         }
 
-        function initSeason(season,mode) {
-            myFirebaseRef.child("season_"+season).on("value", function (snapshot) {
+        function initSeason(season, completionHandler) {
+            myFirebaseRef.child("season_" + season).on("value", function (snapshot) {
 
                 $scope.games = snapshot.val();
 
                 calculateResults();
 
-                render("ronaldPunkte", 0);
+                render($scope.currentQuantity.key, $scope.currentQuantity.prec,
+                $scope.currentQuantity.suffix);
+
+                if (completionHandler) {
+                    completionHandler();
+                }
 
                 $scope.$apply();
-                myFirebaseRef.child("season_"+season).off("value");
+                myFirebaseRef.child("season_" + season).off("value");
             });
         }
 
@@ -113,7 +124,6 @@ angular.module('myApp.view2', ['ngRoute'])
             for (var attr in x) {
                 y[attr] = json2array(x[attr]);
             }
-            console.log(y);
         }
 
         function acc(key, attr, value) {
@@ -155,15 +165,22 @@ angular.module('myApp.view2', ['ngRoute'])
             }
         }
 
-        function process(key, value) {
-            var substr = key.substring(0, 4);
+        function process(keyOfObject, object) {
+            // Erstellung primärer Summen:
+            // points, val, teil, gew, ges, gewGegen, gesGegen
+
+            var substr = keyOfObject.substring(0, 4);
+
+            // Akkumuliere alle Spiele-Objekte der Firebase-Referenz
             if (substr === 'game') {
 
-                var threeplayers = value.activeThree.split(" ");
-                var points = parseInt(value.points);
+                var threeplayers = object.activeThree.split(" ");
+                var points = parseInt(object.points);
 
                 // Punkte zusammenzählen
-                acc($scope.results.val, value.declarer, points);
+                if (object.declarer != 'E') {
+                    acc($scope.results.val, object.declarer, points);
+                }
 
                 // Teilgenommene Spiele
                 acc($scope.results.teil, threeplayers[0], 1);
@@ -173,22 +190,37 @@ angular.module('myApp.view2', ['ngRoute'])
                 // Spiele insgesamt in Skatrunde
                 acc($scope.results, "nrGames", 1);
 
-                // Gewonnen und gespielt als Alleinspieler
-                if (value.points > 0) {
-                    acc($scope.results.gew, value.declarer, 1);
+                // Gewonnen als Alleinspieler
+                if (points > 0) {
+                    acc($scope.results.gew, object.declarer, 1);
                 }
-                acc($scope.results.ges, value.declarer, 1);
+
+                // Gespielt als Alleinspieler
+                if (object.declarer != 'E') {
+                    acc($scope.results.ges, object.declarer, 1);
+                }
 
                 // Gewonnen und gespielt als Gegenspieler
                 threeplayers.forEach(function (el) {
-                    if (el != value.declarer) {
+                    if (el != object.declarer) {
                         acc($scope.results.gesGegen, el, 1);
                         if (points < 0) {
                             acc($scope.results.gewGegen, el, 1);
                         }
                     }
                 });
+
+                // Eingemischte Spiele registrieren
+                acc($scope.results, "eingemischt", 1);
+
+                // ToDo: Kontras
+
+                // ToDo: Spielwert-Statistik
             }
+
+            // ToDo: Grafiken, Zeitverläufe parsen zu bestimmten Größen
+
+            // ToDo: Spieltage einzeln akkumulieren für Spieltagsübersicht (Tabelle)
         }
 
         function results() {
@@ -212,6 +244,16 @@ angular.module('myApp.view2', ['ngRoute'])
                 turnierRonaldPunkte: {},
                 turnierPPT: {}
             };
+        }
+
+        function clickSeason(el, completionHandler) {
+            initSeason(el.key, completionHandler);
+            $scope.currentSeason=el;
+        }
+
+        function clickQuantity(el) {
+            renderFollowUp(el.key, el.prec, el.suffix);
+            $scope.currentQuantity=el;
         }
 
         // ---- D3 rendering
@@ -251,7 +293,7 @@ angular.module('myApp.view2', ['ngRoute'])
                 .append("svg")
                 .attr("width", w)
                 .attr("height", h)
-                .style("background-color", "rgb(187, 170, 170)");
+                .style("background-color", "transparent");
 
             // Sort stuff
             var sortItems = function (a, b) {
