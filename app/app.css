@@ -302,3 +302,8 @@ video, object {
   -o-transition: opacity 0.5s;
 }
 
+.v2selected {
+  border: solid 0;
+  border-left-width: 11px;
+  border-right-width: 11px;
+}

@@ -10,7 +10,8 @@
                 <div class="btn-group-vertical" role="group" style="width: 100%;">
                     <button style="width:100%;"
                             ng-repeat="el in nameOfSeasons" class="btn btn-default" type="button"
-                            ng-click="clickSeason(el);">
+                            ng-click="clickSeason(el);"
+                            ng-class="{v2selected: el.key==currentSeason.key}">
                         {{el.name}}
                     </button>
                 </div>
@@ -26,7 +27,8 @@
                 <div class="btn-group-vertical" role="group" style="width:100%">
                     <button style="width:100%;"
                             ng-repeat="el in nameOfStatId" class="btn btn-default" type="button"
-                            ng-click="clickQuantity(el);">
+                            ng-click="clickQuantity(el);"
+                            ng-class="{v2selected: el.key==currentQuantity.key}">
                         {{el.name}}
                     </button>
                 </div>
@@ -36,7 +38,6 @@
     <div class="col-sm-7">
         <div class="panel panel-success">
             <div class="panel-heading">
-                Test
                 <span>{{currentSeason.name}}</span>
                 <span style="float:right;">{{currentQuantity.name}}</span>
             </div>

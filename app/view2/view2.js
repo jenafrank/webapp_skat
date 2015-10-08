@@ -221,6 +221,7 @@ angular.module('myApp.view2', ['ngRoute'])
             // ToDo: Grafiken, Zeitverläufe parsen zu bestimmten Größen
 
             // ToDo: Spieltage einzeln akkumulieren für Spieltagsübersicht (Tabelle)
+            // In Extra-Traverse
         }
 
         function results() {
@@ -330,15 +331,16 @@ angular.module('myApp.view2', ['ngRoute'])
                     return ret;
                 })
                 .attr("class", "one")
+                .attr("dominant-baseline","central")
                 .attr("text-anchor", "end")
-                .attr("x", function (d, i) {
-                    return xScale(d.value) - 2;
+                .attr("x", function (d) {
+                    return d3.max([100,xScale(d.value) - 6]);
                 })
                 .attr("y", function (d, i) {
-                    return yScale(i) + yScale.rangeBand() * 5 / 6;
+                    return yScale(i) + yScale.rangeBand()/2;
                 })
                 .attr("font-family", "sans-serif")
-                .attr("font-size", "11px")
+                .attr("font-size", "24px")
                 .attr("fill", "white");
 
             // Create labels: player names
@@ -351,12 +353,13 @@ angular.module('myApp.view2', ['ngRoute'])
                 })
                 .attr("class", "two")
                 .attr("text-anchor", "start")
+                .attr("dominant-baseline","central")
                 .attr("x", 2)
                 .attr("y", function (d, i) {
-                    return yScale(i) + yScale.rangeBand() * 5 / 6;
+                    return yScale(i) + yScale.rangeBand()/2;
                 })
                 .attr("font-family", "sans-serif")
-                .attr("font-size", "11px")
+                .attr("font-size", "24px")
                 .attr("fill", "white");
 
             // d3-sort the array
@@ -370,14 +373,14 @@ angular.module('myApp.view2', ['ngRoute'])
             svg.selectAll("text.one")
                 .sort(sortItems)
                 .attr("y", function (d, i) {
-                    return yScale(i) + yScale.rangeBand() * 5 / 6;
+                    return yScale(i) + yScale.rangeBand() / 2;
                 });
 
             // d3-sort array 3
             svg.selectAll("text.two")
                 .sort(sortItems)
                 .attr("y", function (d, i) {
-                    return yScale(i) + yScale.rangeBand() * 5 / 6;
+                    return yScale(i) + yScale.rangeBand() / 2;
                 });
 
         }
@@ -439,10 +442,10 @@ angular.module('myApp.view2', ['ngRoute'])
                     return ret;
                 })
                 .attr("x", function (d, i) {
-                    return xScale(d.value) - 2;
+                    return d3.max([100,xScale(d.value) - 6]);
                 })
                 .attr("y", function (d, i) {
-                    return yScale(i) + yScale.rangeBand() * 5 / 6;
+                    return yScale(i) + yScale.rangeBand() / 2;
                 });
 
             // d3-sort array 3
@@ -455,7 +458,7 @@ angular.module('myApp.view2', ['ngRoute'])
                 })
                 .attr("x", 2)
                 .attr("y", function (d, i) {
-                    return yScale(i) + yScale.rangeBand() * 5 / 6;
+                    return yScale(i) + yScale.rangeBand() / 2;
                 });
         }
     }]);
