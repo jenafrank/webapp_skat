@@ -144,12 +144,12 @@ angular.module('myApp.view2', ['ngRoute'])
             // Auswertung der akkumulierten Spieldaten
             $scope.results.refGames = max($scope.results.teil);
             for (var el in x.teil) {
-                x.ratioAllein[el] = x.gew[el] / x.ges[el] * 100.;
-                x.ratioGespielt[el] = x.ges[el] / x.teil[el] * 100.;
-                x.ronaldFaktor[el] = x.refGames / x.teil[el];
+                x.ratioAllein[el] = x.ges[el] > 0 ? x.gew[el] / x.ges[el] * 100. : 0;
+                x.ratioGespielt[el] = x.teil[el] > 0 ? x.ges[el] / x.teil[el] * 100. : 0;
+                x.ronaldFaktor[el] = x.teil[el] > 0 ? x.refGames / x.teil[el] : 0;
                 x.ronaldGedeckelt[el] = x.ronaldFaktor[el] > 3 ? 3 : x.ronaldFaktor[el];
                 x.ronaldPunkte[el] = x.ronaldGedeckelt[el] * x.val[el];
-                x.ratioPPT[el] = x.val[el] / x.teil[el];
+                x.ratioPPT[el] = x.teil[el] > 0 ? x.val[el] / x.teil[el] : 0;
             }
         }
 
