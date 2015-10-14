@@ -17,6 +17,7 @@ angular.module('myApp.view2', ['ngRoute'])
         var h = 500;
         var colors = d3.scale.category10().
             domain(['A', 'F', 'R', 'P', 'S', 'Ro', 'Od', 'T']);
+        var x,y;
 
         $scope.isVisible = false;
         $scope.text = "Mein Text";
@@ -75,7 +76,7 @@ angular.module('myApp.view2', ['ngRoute'])
         activate();
 
         function activate() {
-            clickSeason($scope.currentSeason, function() {
+            clickSeason($scope.currentSeason, function () {
                 clickQuantity($scope.currentQuantity);
             });
         }
@@ -88,7 +89,7 @@ angular.module('myApp.view2', ['ngRoute'])
                 calculateResults();
 
                 render($scope.currentQuantity.key, $scope.currentQuantity.prec,
-                $scope.currentQuantity.suffix);
+                    $scope.currentQuantity.suffix);
 
                 if (completionHandler) {
                     completionHandler();
@@ -101,13 +102,26 @@ angular.module('myApp.view2', ['ngRoute'])
 
         function calculateResults() {
 
+            // Declaration of shorthands
             $scope.results = results();
-            var x = $scope.results;
-            var y = $scope.arrays;
+            x = $scope.results;
+            y = $scope.arrays;
 
-            // Akkumuliere einzelne Spiele
-            traverse($scope.games, process);
+            if ($scope.currentSeason.key > 9) {
+                traverse($scope.games, process);
+                postTraverse();
+            } else {
+                traverse($scope.games, processOld);
+                postTraverseOld();
+            }
 
+            // Umwandlung in Datenstruktur für Darstellung in D3 und Angular
+            for (var attr in x) {
+                y[attr] = json2array(x[attr]);
+            }
+        }
+
+        function postTraverse() {
             // Auswertung der akkumulierten Spieldaten
             $scope.results.refGames = max($scope.results.teil);
             for (var el in x.teil) {
@@ -124,10 +138,18 @@ angular.module('myApp.view2', ['ngRoute'])
                 x.turnierPPT[el] = x.turnierPunkte[el] / x.teil[el];
                 x.ratioPPT[el] = x.val[el] / x.teil[el];
             }
+        }
 
-            // Umwandlung in Datenstruktur für Darstellung in D3 und Angular
-            for (var attr in x) {
-                y[attr] = json2array(x[attr]);
+        function postTraverseOld() {
+            // Auswertung der akkumulierten Spieldaten
+            $scope.results.refGames = max($scope.results.teil);
+            for (var el in x.teil) {
+                x.ratioAllein[el] = x.gew[el] / x.ges[el] * 100.;
+                x.ratioGespielt[el] = x.ges[el] / x.teil[el] * 100.;
+                x.ronaldFaktor[el] = x.refGames / x.teil[el];
+                x.ronaldGedeckelt[el] = x.ronaldFaktor[el] > 3 ? 3 : x.ronaldFaktor[el];
+                x.ronaldPunkte[el] = x.ronaldGedeckelt[el] * x.val[el];
+                x.ratioPPT[el] = x.val[el] / x.teil[el];
             }
         }
 
@@ -229,6 +251,38 @@ angular.module('myApp.view2', ['ngRoute'])
             // In Extra-Traverse
         }
 
+        function processOld(keyOfObject, object) {
+            // Erstellung primärer Summen:
+            // val, teil, gew, ges
+
+            var substr = keyOfObject.substring(0, 3);
+            var ply;
+
+            // Akkumuliere alle Spiele-Objekte der Firebase-Referenz
+            if (substr === 'day') {
+
+                // Punkte
+                for (ply in object.val) {
+                    acc($scope.results.val,ply,parseFloat(object.val[ply]));
+                }
+
+                // Teilgenommen
+                for (ply in object.teil) {
+                    acc($scope.results.teil,ply,parseInt(object.teil[ply]));
+                }
+
+                // Gespielte Spiele
+                for (ply in object.ges) {
+                    acc($scope.results.ges,ply,parseInt(object.ges[ply]));
+                }
+
+                // Gewonnene Spiele
+                for (ply in object.gew) {
+                    acc($scope.results.gew,ply,parseInt(object.gew[ply]));
+                }
+            }
+        }
+
         function results() {
             return {
                 val: {},
@@ -254,12 +308,12 @@ angular.module('myApp.view2', ['ngRoute'])
 
         function clickSeason(el, completionHandler) {
             initSeason(el.key, completionHandler);
-            $scope.currentSeason=el;
+            $scope.currentSeason = el;
         }
 
         function clickQuantity(el) {
             renderFollowUp(el.key, el.prec, el.suffix);
-            $scope.currentQuantity=el;
+            $scope.currentQuantity = el;
         }
 
         // ---- D3 rendering
@@ -323,13 +377,13 @@ angular.module('myApp.view2', ['ngRoute'])
                     return ret;
                 })
                 .attr("class", "one")
-                .attr("dominant-baseline","central")
+                .attr("dominant-baseline", "central")
                 .attr("text-anchor", "end")
                 .attr("x", function (d) {
-                    return d3.max([100,xScale(d.value) - 6]);
+                    return d3.max([100, xScale(d.value) - 6]);
                 })
                 .attr("y", function (d, i) {
-                    return yScale(i) + yScale.rangeBand()/2;
+                    return yScale(i) + yScale.rangeBand() / 2;
                 })
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "24px")
@@ -346,10 +400,10 @@ angular.module('myApp.view2', ['ngRoute'])
                 })
                 .attr("class", "two")
                 .attr("text-anchor", "start")
-                .attr("dominant-baseline","central")
+                .attr("dominant-baseline", "central")
                 .attr("x", 2)
                 .attr("y", function (d, i) {
-                    return yScale(i) + yScale.rangeBand()/2;
+                    return yScale(i) + yScale.rangeBand() / 2;
                 })
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "24px")
@@ -399,7 +453,7 @@ angular.module('myApp.view2', ['ngRoute'])
                     return ret;
                 })
                 .attr("x", function (d, i) {
-                    return d3.max([100,xScale(d.value) - 6]);
+                    return d3.max([100, xScale(d.value) - 6]);
                 })
                 .attr("y", function (d, i) {
                     return yScale(i) + yScale.rangeBand() / 2;
