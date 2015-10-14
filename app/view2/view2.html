@@ -1,51 +1,59 @@
-<p>Skat Statistics.</p>
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h2>Skat-Auswertung</h2>
+    </div>
+    <div class="panel-body" style="background-color: black;>
 
-<div class="row">
-    <div class="col-sm-2">
-        <div class="panel panel-danger">
-            <div class="panel-heading">
-                Saison
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        Saison
+                    </div>
+                    <div class="panel-body">
+                        <div class="btn-group-vertical" role="group" style="width: 100%;">
+                            <button style="width:100%;"
+                                    ng-repeat="el in nameOfSeasons" class="btn btn-default" type="button"
+                                    ng-click="clickSeason(el);"
+                                    ng-class="{v2selected: el.key==currentSeason.key}">
+                                {{el.name}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="panel-body">
-                <div class="btn-group-vertical" role="group" style="width: 100%;">
-                    <button style="width:100%;"
-                            ng-repeat="el in nameOfSeasons" class="btn btn-default" type="button"
-                            ng-click="clickSeason(el);"
-                            ng-class="{v2selected: el.key==currentSeason.key}">
-                        {{el.name}}
-                    </button>
+            <div class="col-sm-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Auswertung
+                    </div>
+                    <div class="panel-body">
+                        <div class="btn-group-vertical" role="group" style="width:100%">
+                            <button style="width:100%;"
+                                    ng-repeat="el in nameOfStatId" class="btn btn-default" type="button"
+                                    ng-click="clickQuantity(el);"
+                                    ng-class="{v2selected: el.key==currentQuantity.key}">
+                                {{el.name}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <span>{{currentSeason.name}}</span>
+                        <span style="float:right;">{{currentQuantity.name}}</span>
+                    </div>
+                    <div class="panel-body">
+                        <renderZone>
+                        </renderZone>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                Auswertung
-            </div>
-            <div class="panel-body">
-                <div class="btn-group-vertical" role="group" style="width:100%">
-                    <button style="width:100%;"
-                            ng-repeat="el in nameOfStatId" class="btn btn-default" type="button"
-                            ng-click="clickQuantity(el);"
-                            ng-class="{v2selected: el.key==currentQuantity.key}">
-                        {{el.name}}
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-7">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <span>{{currentSeason.name}}</span>
-                <span style="float:right;">{{currentQuantity.name}}</span>
-            </div>
-            <div class="panel-body">
-                <renderZone>
-                </renderZone>
-            </div>
-        </div>
+
+
     </div>
 </div>
 

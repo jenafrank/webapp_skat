@@ -13,6 +13,10 @@ angular.module('myApp.view2', ['ngRoute'])
 
         var url = "https://luminous-inferno-9676.firebaseio.com";
         var myFirebaseRef = new Firebase(url);
+        var w = 600;
+        var h = 500;
+        var colors = d3.scale.category10().
+            domain(['A', 'F', 'R', 'P', 'S', 'Ro', 'Od', 'T']);
 
         $scope.isVisible = false;
         $scope.text = "Mein Text";
@@ -54,7 +58,8 @@ angular.module('myApp.view2', ['ngRoute'])
             {key: 13, name: "Saison 13", info: ""},
             {key: 12, name: "Saison 12", info: ""},
             {key: 11, name: "Saison 11", info: ""},
-            {key: 10, name: "Saison 10", info: ""}
+            {key: 10, name: "Saison 10", info: ""},
+            {key: 9, name: "Saison 9", info: ""}
         ];
 
         $scope.currentSeason = $scope.nameOfSeasons[0];
@@ -261,13 +266,7 @@ angular.module('myApp.view2', ['ngRoute'])
 
         function render(yQuantity, prec, suffix) {
 
-            var w = 600;
-            var h = 500;
-
             var dataset = $scope.arrays[yQuantity];
-
-            var colors = d3.scale.category10().
-                domain(['A', 'F', 'R', 'P', 'S', 'Ro', 'Od', 'T']);
 
             var yScale = d3.scale.ordinal()
                 .domain(d3.range(dataset.length))
@@ -278,10 +277,6 @@ angular.module('myApp.view2', ['ngRoute'])
                     return d.value;
                 })])
                 .range([0, w - 10]);
-
-            var key = function (d) {
-                return d.name;
-            };
 
             // Remove SVG Element
             var svgElement = d3.select("svg");
@@ -296,16 +291,12 @@ angular.module('myApp.view2', ['ngRoute'])
                 .attr("height", h)
                 .style("background-color", "transparent");
 
-            // Sort stuff
-            var sortItems = function (a, b) {
-                return b.value - a.value;
-            };
-
             //Create bars
             svg.selectAll("rect")
                 .data(dataset, key)
                 .enter()
                 .append("rect")
+                .sort(sortItems)
                 .attr("y", function (d, i) {
                     return yScale(i);
                 })
@@ -323,6 +314,7 @@ angular.module('myApp.view2', ['ngRoute'])
                 .data(dataset, key)
                 .enter()
                 .append("text")
+                .sort(sortItems)
                 .text(function (d) {
                     var ret = d3.round(d.value, prec);
                     if (suffix) {
@@ -348,6 +340,7 @@ angular.module('myApp.view2', ['ngRoute'])
                 .data(dataset, key)
                 .enter()
                 .append("text")
+                .sort(sortItems)
                 .text(function (d) {
                     return d.name;
                 })
@@ -361,41 +354,13 @@ angular.module('myApp.view2', ['ngRoute'])
                 .attr("font-family", "sans-serif")
                 .attr("font-size", "24px")
                 .attr("fill", "white");
-
-            // d3-sort the array
-            svg.selectAll("rect")
-                .sort(sortItems)
-                .attr("y", function (d, i) {
-                    return yScale(i);
-                });
-
-            // d3-sort array 2
-            svg.selectAll("text.one")
-                .sort(sortItems)
-                .attr("y", function (d, i) {
-                    return yScale(i) + yScale.rangeBand() / 2;
-                });
-
-            // d3-sort array 3
-            svg.selectAll("text.two")
-                .sort(sortItems)
-                .attr("y", function (d, i) {
-                    return yScale(i) + yScale.rangeBand() / 2;
-                });
-
         }
 
         function renderFollowUp(yQuantity, prec, suffix) {
 
-            var w = 600;
-            var h = 500;
-
             var dataset = $scope.arrays[yQuantity];
 
             var svg = d3.select("renderZone");
-
-            var colors = d3.scale.category10().
-                domain(['A', 'F', 'R', 'P', 'S', 'Ro', 'Od', 'T']);
 
             var yScale = d3.scale.ordinal()
                 .domain(d3.range(dataset.length))
@@ -406,14 +371,6 @@ angular.module('myApp.view2', ['ngRoute'])
                     return d.value;
                 })])
                 .range([0, w - 10]);
-
-            var sortItems = function (a, b) {
-                return b.value - a.value;
-            };
-
-            var key = function (d) {
-                return d.name;
-            };
 
             // d3-sort the array
             svg.selectAll("rect")
@@ -461,4 +418,13 @@ angular.module('myApp.view2', ['ngRoute'])
                     return yScale(i) + yScale.rangeBand() / 2;
                 });
         }
+
+        function sortItems(a, b) {
+            return b.value - a.value;
+        };
+
+        function key(d) {
+            return d.name;
+        };
+
     }]);
