@@ -1,9 +1,16 @@
-<div class="panel panel-warning">
-    <div class="panel-heading">
-        <h2>Skat-Auswertung</h2>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+    <div class="container-fluid">
+    <div class="navbar-brand">
+        reactive.gutblatt.de
     </div>
-    <div class="panel-body" style="background-color: black;>
+    <div class="navbar-brand navbar-right" style="margin-right:25px;font-size: 18px;font-weight: bold;">
+            Skat-Auswertung
+    </div>
+    </div>
+</nav>
 
+<div class="panel panel-warning">
+    <div class="panel-body" style="background-color: black;padding-top:75px;">
         <div class="row">
             <div class="col-sm-2">
                 <div class="panel panel-danger">
@@ -13,7 +20,8 @@
                     <div class="panel-body">
                         <div class="btn-group-vertical" role="group" style="width: 100%;">
                             <button style="width:100%;"
-                                    ng-repeat="el in nameOfSeasons" class="btn btn-default" type="button"
+                                    ng-repeat="el in nameOfSeasons"
+                                    class="btn btn-default" type="button"
                                     ng-click="clickSeason(el);"
                                     ng-class="{v2selected: el.key==currentSeason.key}">
                                 {{el.name}}
@@ -30,17 +38,24 @@
                     <div class="panel-body">
                         <div class="btn-group-vertical" role="group" style="width:100%">
                             <button style="width:100%;"
-                                    ng-repeat="el in nameOfStatId" class="btn btn-default" type="button"
+                                    ng-repeat-start="el in nameOfStatId" class="btn btn-default" type="button"
                                     ng-click="clickQuantity(el);"
-                                    ng-class="{v2selected: el.key==currentQuantity.key}">
+                                    ng-class="{v2selected: el.key==currentQuantity.key}"
+                                    ng-hide="(!el.old && currentSeason.old) || el.category">
                                 {{el.name}}
                             </button>
+                            <div ng-repeat-end ng-show="el.category"
+                                    style="width:100%;background-color:antiquewhite;
+                                    color:darkblue;text-align: center;font-size:18px;
+                                    margin-top:30px;font-weight: bold;margin-bottom: 15px;">
+                                {{el.category}}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-7">
-                <div class="panel panel-success">
+                <div class="panel panel-success" style="position: fixed;">
                     <div class="panel-heading">
                         <span>{{currentSeason.name}}</span>
                         <span style="float:right;">{{currentQuantity.name}}</span>
@@ -52,8 +67,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
 

@@ -16,8 +16,8 @@ angular.module('myApp.view2', ['ngRoute'])
         var w = 600;
         var h = 500;
         var colors = d3.scale.category10().
-            domain(['A', 'F', 'R', 'P', 'S', 'Ro', 'Od', 'T']);
-        var x,y;
+            domain(['A', 'F', 'R', 'P', 'S', 'Ro', 'Od', 'T', 'Ra', 'Pa']);
+        var x, y;
 
         $scope.isVisible = false;
         $scope.text = "Mein Text";
@@ -26,49 +26,12 @@ angular.module('myApp.view2', ['ngRoute'])
         $scope.clickSeason = clickSeason;
         $scope.clickQuantity = clickQuantity;
 
-        $scope.nameOfStatId = [
-            {name: "GS: Gewonnen pro Spiel", key: "ratioGegen", prec: 1, suffix: " %"},
-            {name: "Gewonnen pro Spiel", key: "ratioAllein", prec: 1, suffix: " %"},
-            {name: "Spiele pro Teilgenommen", key: "ratioGespielt", prec: 1, suffix: " %"},
-            {name: "Ronald-Faktor", key: "ronaldFaktor", prec: 2},
-            {name: "Deckel-Faktor", key: "ronaldGedeckelt", prec: 2},
-            {name: "Punkte", key: "ronaldPunkte", prec: 0},
-            {name: "GS: Verloren", key: "verGegen", prec: 0},
-            {name: "Verloren", key: "ver", prec: 0},
-            {name: "GS: Gewonnen", key: "gewGegen", prec: 0},
-            {name: "Gewonnen", key: "gew", prec: 0},
-            {name: "GS: Teilgenommen", key: "gesGegen", prec: 0},
-            {name: "Teilgenommen", key: "ges", prec: 0},
-            {name: "Echte Punkte", key: "val", prec: 0},
-            {name: "Echte Turnier-Punkte", key: "turnierPunkte", prec: 0},
-            {name: "Turnierpunkte", key: "turnierRonaldPunkte", prec: 0},
-            {name: "Turnierpunkte pro Spiel", key: "turnierPPT", prec: 1},
-            {name: "Punkte pro Spiel", key: "ratioPPT", prec: 1},
-            {name: "Teilgenommen", key: "teil", prec: 0}
-        ];
-        $scope.nameOfSeasons = [
-            {key: 22, name: "Saison 22", info: ""},
-            {key: 21, name: "Saison 21", info: ""},
-            {key: 20, name: "Saison 20", info: ""},
-            {key: 19, name: "Saison 19", info: ""},
-            {key: 18, name: "Saison 18", info: ""},
-            {key: 17, name: "Saison 17", info: ""},
-            {key: 16, name: "Saison 16", info: ""},
-            {key: 15, name: "Saison 15", info: ""},
-            {key: 14, name: "Saison 14", info: ""},
-            {key: 13, name: "Saison 13", info: ""},
-            {key: 12, name: "Saison 12", info: ""},
-            {key: 11, name: "Saison 11", info: ""},
-            {key: 10, name: "Saison 10", info: ""},
-            {key: 9, name: "Saison 9", info: ""}
-        ];
-
+        $scope.nameOfStatId = availableStats();
+        $scope.nameOfSeasons = availableSeasons();
         $scope.currentSeason = $scope.nameOfSeasons[0];
         $scope.currentQuantity = $scope.nameOfStatId[0];
 
-        $scope.arrays = {
-            ronaldPunkte: []
-        };
+        $scope.arrays = {};
 
         $scope.render = render;
         $scope.renderFollowUp = renderFollowUp;
@@ -82,13 +45,21 @@ angular.module('myApp.view2', ['ngRoute'])
         }
 
         function initSeason(season, completionHandler) {
+            if (season == 5.5) {
+                season = '5_5';
+            }
+            if (season == 4.5) {
+                season = '4_5';
+            }
+
             myFirebaseRef.child("season_" + season).on("value", function (snapshot) {
 
                 $scope.games = snapshot.val();
 
                 calculateResults();
 
-                render($scope.currentQuantity.key, $scope.currentQuantity.prec,
+                render($scope.currentQuantity.key,
+                    $scope.currentQuantity.prec,
                     $scope.currentQuantity.suffix);
 
                 if (completionHandler) {
@@ -107,7 +78,7 @@ angular.module('myApp.view2', ['ngRoute'])
             x = $scope.results;
             y = $scope.arrays;
 
-            if ($scope.currentSeason.key > 9) {
+            if (!$scope.currentSeason.old) {
                 traverse($scope.games, process);
                 postTraverse();
             } else {
@@ -263,22 +234,22 @@ angular.module('myApp.view2', ['ngRoute'])
 
                 // Punkte
                 for (ply in object.val) {
-                    acc($scope.results.val,ply,parseFloat(object.val[ply]));
+                    acc($scope.results.val, ply, parseFloat(object.val[ply]));
                 }
 
                 // Teilgenommen
                 for (ply in object.teil) {
-                    acc($scope.results.teil,ply,parseInt(object.teil[ply]));
+                    acc($scope.results.teil, ply, parseInt(object.teil[ply]));
                 }
 
                 // Gespielte Spiele
                 for (ply in object.ges) {
-                    acc($scope.results.ges,ply,parseInt(object.ges[ply]));
+                    acc($scope.results.ges, ply, parseInt(object.ges[ply]));
                 }
 
                 // Gewonnene Spiele
                 for (ply in object.gew) {
-                    acc($scope.results.gew,ply,parseInt(object.gew[ply]));
+                    acc($scope.results.gew, ply, parseInt(object.gew[ply]));
                 }
             }
         }
@@ -481,4 +452,157 @@ angular.module('myApp.view2', ['ngRoute'])
             return d.name;
         };
 
+        function availableStats () {
+            return [
+                {
+                    name: "Punkte",
+                    key: "ronaldPunkte",
+                    prec: 0,
+                    old: true
+                },
+                {
+                    name: "Punkte pro TS",
+                    key: "ratioPPT",
+                    prec: 1,
+                    old: true
+                },
+                {
+                    name: "Gewonnene Spiele pro Spiel",
+                    key: "ratioAllein",
+                    prec: 1,
+                    suffix: " %",
+                    old: true
+                },
+                {
+                    name: "Spiele pro TS",
+                    key: "ratioGespielt",
+                    prec: 1,
+                    suffix: " %",
+                    old: true
+                },
+                {
+                    name: "Teilgenommen",
+                    key: "teil",
+                    prec: 0,
+                    old: false
+                },
+                {
+                    name: "Ronald-Faktor",
+                    key: "ronaldFaktor",
+                    prec: 2,
+                    old: true
+                },
+                {
+                    name: "Deckel-Faktor",
+                    key: "ronaldGedeckelt",
+                    prec: 2,
+                    old: true
+                },
+                {
+                    name: "Gespielt",
+                    key: "ges",
+                    prec: 0,
+                    old: true
+                },
+                {
+                    name: "Gewonnen",
+                    key: "gew",
+                    prec: 0,
+                    old: true
+                },
+                {
+                    name: "Verloren",
+                    key: "ver",
+                    prec: 0,
+                    old: true
+                },
+                {
+                    category: "Turnierwertung"
+                },
+                {
+                    name: "Turnierpunkte",
+                    key: "turnierRonaldPunkte",
+                    prec: 0,
+                    old: false
+                },
+                {
+                    name: "Turnierpunkte pro Spiel",
+                    key: "turnierPPT",
+                    prec: 1,
+                    old: false
+                },
+                {
+                    category: "Echte Punkte"
+                },
+                {
+                    name: "Echte Punkte",
+                    key: "val",
+                    prec: 0,
+                    old: true
+                },
+                {
+                    name: "Echte Turnier-Punkte",
+                    key: "turnierPunkte",
+                    prec: 0,
+                    old: false
+                },
+                {
+                    category: "Gegenspiel"
+                },
+                {
+                    name: "Gewonnen [%]",
+                    key: "ratioGegen",
+                    prec: 1,
+                    suffix: " %",
+                    old: false
+                },
+                {
+                    name: "Gespielt",
+                    key: "gesGegen",
+                    prec: 0,
+                    old: false
+                },
+                {
+                    name: "Gewonnen",
+                    key: "gewGegen",
+                    prec: 0,
+                    old: false
+                },
+                {
+                    name: "Verloren",
+                    key: "verGegen",
+                    prec: 0,
+                    old: false
+                }
+            ];
+        }
+
+        function availableSeasons () {
+            return [
+                {key: 22, name: "Saison 22", info: "", old: false},
+                {key: 21, name: "Saison 21", info: "", old: false},
+                {key: 20, name: "Saison 20", info: "", old: false},
+                {key: 19, name: "Saison 19", info: "", old: false},
+                {key: 18, name: "Saison 18", info: "", old: false},
+                {key: 17, name: "Saison 17", info: "", old: false},
+                {key: 16, name: "Saison 16", info: "", old: false},
+                {key: 15, name: "Saison 15", info: "", old: false},
+                {key: 14, name: "Saison 14", info: "", old: false},
+                {key: 13, name: "Saison 13", info: "", old: false},
+                {key: 12, name: "Saison 12", info: "", old: false},
+                {key: 11, name: "Saison 11", info: "", old: false},
+                {key: 10, name: "Saison 10", info: "", old: false},
+                {key: 9, name: "Saison 9", info: "", old: true},
+                {key: 8, name: "Saison 8", info: "", old: true},
+                {key: 7, name: "Saison 7", info: "", old: true},
+                {key: 6, name: "Saison 6", info: "", old: true},
+                {key: 5.5, name: "Interludium II", info: "", old: true},
+                {key: 5, name: "Saison 5", info: "", old: true},
+                {key: 4.5, name: "Interludium I", info: "", old: true},
+                {key: 4, name: "Saison 4", info: "", old: true},
+                {key: 3, name: "Saison 3", info: "", old: true},
+                {key: 2, name: "Saison 2", info: "", old: true},
+                {key: 1, name: "Saison 1", info: "", old: true}
+            ];
+        }
     }]);
