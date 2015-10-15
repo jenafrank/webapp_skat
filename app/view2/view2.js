@@ -121,6 +121,7 @@ angular.module('myApp.view2', ['ngRoute'])
                 x.ronaldGedeckelt[el] = x.ronaldFaktor[el] > 3 ? 3 : x.ronaldFaktor[el];
                 x.ronaldPunkte[el] = x.ronaldGedeckelt[el] * x.val[el];
                 x.ratioPPT[el] = x.teil[el] > 0 ? x.val[el] / x.teil[el] : 0;
+                x.ver[el] = x.ges[el] - x.gew[el];
             }
         }
 
