@@ -307,3 +307,19 @@ video, object {
   border-left-width: 11px;
   border-right-width: 11px;
 }
+
+#spieltag td {
+  padding: 5px;
+  font-size:16px;
+}
+
+.emph {
+  font-size:20px;
+  padding-left: 10px;
+}
+
+#spieltag th {
+  padding: 5px;
+  font-weight: bold;
+  font-size:18px;
+}

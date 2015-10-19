@@ -18,6 +18,7 @@ angular.module('myApp.view2', ['ngRoute'])
         var colors = d3.scale.category10().
             domain(['A', 'F', 'R', 'P', 'S', 'Ro', 'Od', 'T', 'Ra', 'Pa']);
         var x, y;
+        var currentDay;
 
         $scope.isVisible = false;
         $scope.text = "Mein Text";
@@ -78,6 +79,7 @@ angular.module('myApp.view2', ['ngRoute'])
             $scope.results = results();
             x = $scope.results;
             y = $scope.arrays;
+            currentDay = 0;
 
             if (!$scope.currentSeason.old) {
                 traverse($scope.games, process);
@@ -90,6 +92,11 @@ angular.module('myApp.view2', ['ngRoute'])
             // Umwandlung in Datenstruktur für Darstellung in D3 und Angular
             for (var attr in x) {
                 y[attr] = json2array(x[attr]);
+            }
+
+            y.days=[];
+            for (var attr in x.days) {
+                y.days.push(json2array(x.days[attr]));
             }
         }
 
@@ -170,6 +177,14 @@ angular.module('myApp.view2', ['ngRoute'])
             // points, val, teil, gew, ges, gewGegen, gesGegen
 
             var substr = keyOfObject.substring(0, 4);
+            var substrDay = keyOfObject.substring(0,3);
+            var currentDayStr = currentDay.toString();
+
+            if (substrDay === 'day') {
+                currentDay++;
+                currentDayStr = currentDay.toString();
+                $scope.results.days[currentDayStr]={};
+            }
 
             // Akkumuliere alle Spiele-Objekte der Firebase-Referenz
             if (substr === 'game') {
@@ -180,6 +195,8 @@ angular.module('myApp.view2', ['ngRoute'])
                 // Punkte zusammenzählen
                 if (object.declarer != 'E') {
                     acc($scope.results.val, object.declarer, points);
+                    // Spieltage einzeln akkumulieren
+                    acc($scope.results.days[currentDayStr], object.declarer, points);
                 }
 
                 // Teilgenommene Spiele
@@ -219,9 +236,6 @@ angular.module('myApp.view2', ['ngRoute'])
             }
 
             // ToDo: Grafiken, Zeitverläufe parsen zu bestimmten Größen
-
-            // ToDo: Spieltage einzeln akkumulieren für Spieltagsübersicht (Tabelle)
-            // In Extra-Traverse
         }
 
         function processOld(keyOfObject, object) {
@@ -275,7 +289,8 @@ angular.module('myApp.view2', ['ngRoute'])
                 ronaldPunkte: {},
                 turnierPunkte: {},
                 turnierRonaldPunkte: {},
-                turnierPPT: {}
+                turnierPPT: {},
+                days: {}
             };
         }
 
@@ -285,7 +300,12 @@ angular.module('myApp.view2', ['ngRoute'])
         }
 
         function clickQuantity(el) {
-            renderFollowUp(el.key, el.prec, el.suffix);
+            if ($scope.currentQuantity.barchart && el.barchart) {
+                renderFollowUp(el.key, el.prec, el.suffix);
+            } else if (el.barchart) {
+                render(el.key, el.prec, el.suffix);
+            }
+
             $scope.currentQuantity = el;
         }
 
@@ -460,63 +480,80 @@ angular.module('myApp.view2', ['ngRoute'])
                     name: "Punkte",
                     key: "ronaldPunkte",
                     prec: 0,
-                    old: true
+                    old: true,
+                    barchart: true
                 },
                 {
                     name: "Punkte pro TS",
                     key: "ratioPPT",
                     prec: 1,
-                    old: true
+                    old: true,
+                    barchart: true
+                },
+                {
+                    name: "Spieltage",
+                    key: "spieltage",
+                    prec: 0,
+                    old: false,
+                    barchart: false
                 },
                 {
                     name: "Gewonnene Spiele pro Spiel",
                     key: "ratioAllein",
                     prec: 1,
                     suffix: " %",
-                    old: true
+                    old: true,
+                    barchart: true
                 },
                 {
                     name: "Spiele pro TS",
                     key: "ratioGespielt",
                     prec: 1,
                     suffix: " %",
-                    old: true
+                    old: true,
+                    barchart: true
                 },
                 {
                     name: "Teilgenommen",
                     key: "teil",
                     prec: 0,
-                    old: false
+                    old: false,
+                    barchart: true
                 },
                 {
                     name: "Ronald-Faktor",
                     key: "ronaldFaktor",
                     prec: 2,
-                    old: true
+                    old: true,
+                    barchart: true
                 },
                 {
                     name: "Deckel-Faktor",
                     key: "ronaldGedeckelt",
                     prec: 2,
-                    old: true
+                    old: true,
+                    barchart: true
                 },
                 {
                     name: "Gespielt",
                     key: "ges",
                     prec: 0,
-                    old: true
+                    old: true,
+                    barchart: true
                 },
                 {
                     name: "Gewonnen",
                     key: "gew",
                     prec: 0,
-                    old: true
+                    old: true,
+                    barchart: true
                 },
                 {
                     name: "Verloren",
                     key: "ver",
                     prec: 0,
-                    old: true
+                    old: true,
+                    barchart: true
                 },
                 {
                     category: "Turnierwertung"
@@ -525,13 +562,15 @@ angular.module('myApp.view2', ['ngRoute'])
                     name: "Turnierpunkte",
                     key: "turnierRonaldPunkte",
                     prec: 0,
-                    old: false
+                    old: false,
+                    barchart: true
                 },
                 {
                     name: "Turnierpunkte pro Spiel",
                     key: "turnierPPT",
                     prec: 1,
-                    old: false
+                    old: false,
+                    barchart: true
                 },
                 {
                     category: "Echte Punkte"
@@ -540,13 +579,15 @@ angular.module('myApp.view2', ['ngRoute'])
                     name: "Echte Punkte",
                     key: "val",
                     prec: 0,
-                    old: true
+                    old: true,
+                    barchart: true
                 },
                 {
                     name: "Echte Turnier-Punkte",
                     key: "turnierPunkte",
                     prec: 0,
-                    old: false
+                    old: false,
+                    barchart: true
                 },
                 {
                     category: "Gegenspiel"
@@ -556,25 +597,29 @@ angular.module('myApp.view2', ['ngRoute'])
                     key: "ratioGegen",
                     prec: 1,
                     suffix: " %",
-                    old: false
+                    old: false,
+                    barchart: true
                 },
                 {
                     name: "Gespielt",
                     key: "gesGegen",
                     prec: 0,
-                    old: false
+                    old: false,
+                    barchart: true
                 },
                 {
                     name: "Gewonnen",
                     key: "gewGegen",
                     prec: 0,
-                    old: false
+                    old: false,
+                    barchart: true
                 },
                 {
                     name: "Verloren",
                     key: "verGegen",
                     prec: 0,
-                    old: false
+                    old: false,
+                    barchart: true
                 }
             ];
         }

@@ -1,11 +1,11 @@
 <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
-    <div class="navbar-brand">
-        reactive.gutblatt.de
-    </div>
-    <div class="navbar-brand navbar-right" style="margin-right:25px;font-size: 18px;font-weight: bold;">
+        <div class="navbar-brand">
+            reactive.gutblatt.de
+        </div>
+        <div class="navbar-brand navbar-right" style="margin-right:25px;font-size: 18px;font-weight: bold;">
             Skat-Auswertung
-    </div>
+        </div>
     </div>
 </nav>
 
@@ -45,7 +45,7 @@
                                 {{el.name}}
                             </button>
                             <div ng-repeat-end ng-show="el.category"
-                                    style="width:100%;background-color:antiquewhite;
+                                 style="width:100%;background-color:antiquewhite;
                                     color:darkblue;text-align: center;font-size:18px;
                                     margin-top:30px;font-weight: bold;margin-bottom: 15px;">
                                 {{el.category}}
@@ -61,8 +61,38 @@
                         <span style="float:right;">{{currentQuantity.name}}</span>
                     </div>
                     <div class="panel-body">
-                        <renderZone>
-                        </renderZone>
+                        <div ng-show="currentQuantity.barchart==true">
+                            <renderZone>
+                            </renderZone>
+                        </div>
+                        <div ng-hide="currentQuantity.barchart==true">
+                            <table id="spieltag">
+                                <thead>
+                                <th>
+                                    Spieltag
+                                </th>
+                                <th>
+                                    Datum
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="(key,obj) in arrays.days">
+                                    <td>
+                                        {{key+1}}
+                                    </td>
+                                    <td></td>
+                                    <td ng-repeat-start="el in arrays.days[key] | orderBy: '-value'">
+                                        <div class="emph">
+                                            {{el.name}}
+                                        </div>
+                                    </td>
+                                    <td ng-repeat-end>
+                                        {{el.value}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
