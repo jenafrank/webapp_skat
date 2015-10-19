@@ -30,6 +30,7 @@ angular.module('myApp.view2', ['ngRoute'])
         $scope.nameOfSeasons = availableSeasons();
         $scope.currentSeason = $scope.nameOfSeasons[0];
         $scope.currentQuantity = $scope.nameOfStatId[0];
+        $scope.playerProfiles = playerProfiles();
 
         $scope.arrays = {};
 
@@ -594,16 +595,35 @@ angular.module('myApp.view2', ['ngRoute'])
                 {key: 11, name: "Saison 11", info: "", old: false},
                 {key: 10, name: "Saison 10", info: "", old: false},
                 {key: 9, name: "Saison 9", info: "", old: true},
-                {key: 8, name: "Saison 8", info: "", old: true},
-                {key: 7, name: "Saison 7", info: "", old: true},
-                {key: 6, name: "Saison 6", info: "", old: true},
-                {key: 5.5, name: "Interludium II", info: "", old: true},
-                {key: 5, name: "Saison 5", info: "", old: true},
-                {key: 4.5, name: "Interludium I", info: "", old: true},
-                {key: 4, name: "Saison 4", info: "", old: true},
-                {key: 3, name: "Saison 3", info: "", old: true},
-                {key: 2, name: "Saison 2", info: "", old: true},
-                {key: 1, name: "Saison 1", info: "", old: true}
+                {key: 8, name: "Saison 8", info: "17.01.2008 -- 21.08.2008", old: true},
+                {key: 7, name: "Saison 7", info: "29.03.2007 -- 24.01.2008", old: true},
+                {key: 6, name: "Saison 6", info: "09.04.2006 -- 22.03.2007", old: true},
+                {key: 5.5, name: "Interludium II", info: "01.02.2006 -- 06.04.2006", old: true},
+                {key: 5, name: "Saison 5", info: "03.11.2005 -- 25.01.2006", old: true},
+                {key: 4.5, name: "Interludium I", info: "07.07.2005 -- 27.10.2005", old: true},
+                {key: 4, name: "Saison 4", info: "10.03.2005 -- 23.06.2005", old: true},
+                {key: 3, name: "Saison 3", info: "18.11.2004 -- 13.01.2005", old: true},
+                {key: 2, name: "Saison 2", info: "16.10.2003 -- 23.07.2004", old: true},
+                {key: 1, name: "Saison 1", info: "24.10.2002 -- 13.07.2003", old: true}
             ];
+        }
+
+        function playerProfiles() {
+            return {
+                'Ra': {},
+                'Ro': {},
+                'R': {},
+                'F': {},
+                'A': {},
+                'T': {},
+                'S': {},
+                'P': {},
+                'Pa': {},
+                'Tr': {},
+                'St': {},
+                'M': {},
+                'C': {},
+                'J': {}
+            }
         }
     }]);
