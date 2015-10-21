@@ -73,7 +73,7 @@ angular.module('myApp.view2', ['ngRoute'])
             });
         }
 
-        function calculateResults() {
+        function calculateResults() /**/{
 
             // Declaration of shorthands
             $scope.results = results();
@@ -304,6 +304,8 @@ angular.module('myApp.view2', ['ngRoute'])
                 renderFollowUp(el.key, el.prec, el.suffix);
             } else if (el.barchart) {
                 render(el.key, el.prec, el.suffix);
+            } else if (el.renderSelector) {
+                el.renderSelector();
             }
 
             $scope.currentQuantity = el;
@@ -466,6 +468,81 @@ angular.module('myApp.view2', ['ngRoute'])
                 });
         }
 
+        function renderPerformance() {
+            var data = angular.copy($scope.arrays.ratioAllein);
+            var ydata = $scope.arrays.ratioGespielt;
+
+            // expand data with ydata
+            ydata.forEach( function(yel) {
+                var foundxel = null;
+                data.forEach(function(xel) {
+                    if (xel.name === yel.name) {
+                        foundxel = xel;
+                    }
+                });
+                foundxel.valuey = yel.value;
+            });
+
+            var yScale = d3.scale.linear()
+                .domain([0,50])
+                .range([0,h]);
+
+            var xScale = d3.scale.linear()
+                .domain([50,100])
+                .range([0, w - 10]);
+
+            var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient("bottom");
+
+            var yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient("left");
+
+            // Remove SVG Element
+            var svgElement = d3.select("svg");
+            if (svgElement) {
+                svgElement.remove();
+            }
+
+            //Create SVG element
+            var svg = d3.select("renderZone")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h)
+                .style("background-color", "transparent");
+
+            //Create bars
+            svg.selectAll("rect")
+                .data(data, key)
+                .enter()
+                .append("circle")
+                .attr("cy", function (d, i) {
+                    return yScale(d.valuey);
+                })
+                .attr("cx", function (d, i) {
+                    return xScale(d.value);
+                })
+                .attr("r", 10)
+                .attr("fill", function (d) {
+                    return colors(d.name);
+                });
+
+            svg.append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(0," + (h - 20) + ")")
+                .call(xAxis);
+
+            svg.append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(50,0)")
+                .call(yAxis);
+        }
+
+        function renderStackedBar() {
+
+        }
+
         function sortItems(a, b) {
             return b.value - a.value;
         };
@@ -481,21 +558,32 @@ angular.module('myApp.view2', ['ngRoute'])
                     key: "ronaldPunkte",
                     prec: 0,
                     old: true,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     name: "Punkte pro TS",
                     key: "ratioPPT",
                     prec: 1,
                     old: true,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     name: "Spieltage",
                     key: "spieltage",
                     prec: 0,
                     old: false,
-                    barchart: false
+                    barchart: false,
+                    render: false
+                },
+                {
+                    name: "Performanz",
+                    key: "performanz",
+                    old: true,
+                    barchart: false,
+                    renderSelector: renderPerformance,
+                    render: true
                 },
                 {
                     name: "Gewonnene Spiele pro Spiel",
@@ -503,7 +591,8 @@ angular.module('myApp.view2', ['ngRoute'])
                     prec: 1,
                     suffix: " %",
                     old: true,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     name: "Spiele pro TS",
@@ -511,49 +600,56 @@ angular.module('myApp.view2', ['ngRoute'])
                     prec: 1,
                     suffix: " %",
                     old: true,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     name: "Teilgenommen",
                     key: "teil",
                     prec: 0,
                     old: false,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     name: "Ronald-Faktor",
                     key: "ronaldFaktor",
                     prec: 2,
                     old: true,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     name: "Deckel-Faktor",
                     key: "ronaldGedeckelt",
                     prec: 2,
                     old: true,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     name: "Gespielt",
                     key: "ges",
                     prec: 0,
                     old: true,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     name: "Gewonnen",
                     key: "gew",
                     prec: 0,
                     old: true,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     name: "Verloren",
                     key: "ver",
                     prec: 0,
                     old: true,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     category: "Turnierwertung"
@@ -563,14 +659,16 @@ angular.module('myApp.view2', ['ngRoute'])
                     key: "turnierRonaldPunkte",
                     prec: 0,
                     old: false,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     name: "Turnierpunkte pro Spiel",
                     key: "turnierPPT",
                     prec: 1,
                     old: false,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     category: "Echte Punkte"
@@ -580,14 +678,16 @@ angular.module('myApp.view2', ['ngRoute'])
                     key: "val",
                     prec: 0,
                     old: true,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     name: "Echte Turnier-Punkte",
                     key: "turnierPunkte",
                     prec: 0,
                     old: false,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     category: "Gegenspiel"
@@ -598,28 +698,32 @@ angular.module('myApp.view2', ['ngRoute'])
                     prec: 1,
                     suffix: " %",
                     old: false,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     name: "Gespielt",
                     key: "gesGegen",
                     prec: 0,
                     old: false,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     name: "Gewonnen",
                     key: "gewGegen",
                     prec: 0,
                     old: false,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 },
                 {
                     name: "Verloren",
                     key: "verGegen",
                     prec: 0,
                     old: false,
-                    barchart: true
+                    barchart: true,
+                    render: true
                 }
             ];
         }

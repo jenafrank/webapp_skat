@@ -61,11 +61,11 @@
                         <span style="float:right;">{{currentQuantity.name}}</span>
                     </div>
                     <div class="panel-body">
-                        <div ng-show="currentQuantity.barchart==true">
+                        <div ng-show="currentQuantity.render==true">
                             <renderZone>
                             </renderZone>
                         </div>
-                        <div ng-hide="currentQuantity.barchart==true">
+                        <div ng-hide="currentQuantity.render==true">
                             <table id="spieltag">
                                 <thead>
                                 <th>
