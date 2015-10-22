@@ -127,6 +127,8 @@ angular.module('myApp.view2')
             }
 
             // ToDo: Grafiken, Zeitverläufe parsen zu bestimmten Größen
+
+            // ToDo: 1-Spiel-1-Punkte-Wertung
         }
 
         function old_process(keyOfObject, object) {

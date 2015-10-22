@@ -9,7 +9,7 @@ angular.module('myApp', [
     'ngAnimate'
 ]).
     config(['$routeProvider', '$locationProvider', function ($routeProvider,$locationProvider) {
-        $routeProvider.otherwise({redirectTo: '/start'});
+        $routeProvider.otherwise({redirectTo: '/reactive'});
     }])
     .run(['$rootScope', function ($rootScope) {
 
