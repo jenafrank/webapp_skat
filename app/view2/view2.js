@@ -17,14 +17,14 @@ angular.module('myApp.view2', ['ngRoute'])
         $scope.isVisible = false;
         $scope.text = "Mein Text";
         $scope.games = [];
-        $scope.initSeason = initSeason;
         $scope.clickSeason = clickSeason;
         $scope.clickQuantity = clickQuantity;
 
         $scope.nameOfStatId = Const.available_Statistics;
         $scope.nameOfSeasons = Const.seasons;
         $scope.currentSeason = $scope.nameOfSeasons[0];
-        $scope.currentQuantity = $scope.nameOfStatId[0];
+        $scope.clickSeasonAndLoadQuantity = clickSeasonAndLoadQuantity;
+        $scope.currentQuantity = null;
         $scope.playerProfiles = Const.player_profiles;
 
         $scope.arrays = {};
@@ -36,41 +36,16 @@ angular.module('myApp.view2', ['ngRoute'])
 
         function activate() {
             clickSeason($scope.currentSeason, function () {
-                clickQuantity($scope.currentQuantity);
-            });
-        }
-
-        function initSeason(season, completionHandler) {
-            if (season == 5.5) {
-                season = '5_5';
-            }
-            if (season == 4.5) {
-                season = '4_5';
-            }
-
-            myFirebaseRef.child("season_" + season).on("value", function (snapshot) {
-
-                $scope.games = snapshot.val();
-
-                calculateResults();
-
-                Render.barchart($scope.arrays[$scope.currentQuantity.key],
-                    $scope.currentQuantity.prec,
-                    $scope.currentQuantity.suffix);
-
-                if (completionHandler) {
-                    completionHandler();
-                }
-
-                $scope.$apply();
-                myFirebaseRef.child("season_" + season).off("value");
+                clickQuantity($scope.nameOfStatId[0],false);
             });
         }
 
         function calculateResults() /**/ {
 
             // Declaration of shorthands
-            $scope.results = Const.derived_quantities;
+            $scope.results = angular.copy(Const.derived_quantities);
+            $scope.arrays = {};
+
             x = $scope.results;
             y = $scope.arrays;
 
@@ -104,13 +79,41 @@ angular.module('myApp.view2', ['ngRoute'])
             return array;
         }
 
-        function clickSeason(el, completionHandler) {
-            initSeason(el.key, completionHandler);
-            $scope.currentSeason = el;
+        function clickSeasonAndLoadQuantity(el) {
+            clickSeason(el, function() {
+                clickQuantity($scope.currentQuantity,false);
+            });
         }
 
-        function clickQuantity(el) {
-            if ($scope.currentQuantity.barchart && el.barchart) {
+        function clickSeason(el, completionHandler) {
+            $scope.currentSeason = el;
+            var season = $scope.currentSeason.key;
+
+            if (season == 5.5) {
+                season = '5_5';
+            }
+
+            if (season == 4.5) {
+                season = '4_5';
+            }
+
+            myFirebaseRef.child("season_" + season).on("value", function (snapshot) {
+
+                $scope.games = snapshot.val();
+
+                calculateResults();
+
+                $scope.$apply();
+                myFirebaseRef.child("season_" + season).off("value");
+
+                if (completionHandler) {
+                    completionHandler();
+                }
+            });
+        }
+
+        function clickQuantity(el,animate) {
+            if (animate && $scope.currentQuantity && $scope.currentQuantity.barchart && el.barchart) {
                 Render.barchart_animate($scope.arrays[el.key], el.prec, el.suffix);
             } else if (el.barchart) {
                 Render.barchart($scope.arrays[el.key], el.prec, el.suffix);

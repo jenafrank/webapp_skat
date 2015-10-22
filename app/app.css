@@ -49,9 +49,9 @@ video, object {
 .line0 {
   opacity: 0;
 
-  transition: opacity 3s ease-in-out;
-  -moz-transition: opacity 3s ease-in-out;
-  -webkit-transition: opacity 3s ease-in-out;
+  transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -webkit-transition: opacity 1s ease-in-out;
 }
 
 .line1 {
@@ -61,9 +61,9 @@ video, object {
   font-weight: bold;
   font-family: "Source Code Pro", cursive;
 
-  transition: opacity 6s ease-in-out;
-  -moz-transition: opacity 6s ease-in-out;
-  -webkit-transition: opacity 6s ease-in-out;
+  transition: opacity 2s ease-in-out;
+  -moz-transition: opacity 2s ease-in-out;
+  -webkit-transition: opacity 2s ease-in-out;
 }
 
 .line2 {
@@ -80,9 +80,9 @@ video, object {
 .line3 {
   opacity: 0;
 
-  transition: opacity 2.5s ease-in-out;
-  -moz-transition: opacity 2.5s ease-in-out;
-  -webkit-transition: opacity 2.5s ease-in-out;
+  transition: opacity 2s ease-in-out;
+  -moz-transition: opacity 2s ease-in-out;
+  -webkit-transition: opacity 2s ease-in-out;
 }
 
 .bubble1 {

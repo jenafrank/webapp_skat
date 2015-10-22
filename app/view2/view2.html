@@ -22,7 +22,7 @@
                             <button style="width:100%;"
                                     ng-repeat="el in nameOfSeasons"
                                     class="btn btn-default" type="button"
-                                    ng-click="clickSeason(el);"
+                                    ng-click="clickSeasonAndLoadQuantity(el)"
                                     ng-class="{v2selected: el.key==currentSeason.key}">
                                 {{el.name}}
                             </button>
@@ -39,7 +39,7 @@
                         <div class="btn-group-vertical" role="group" style="width:100%">
                             <button style="width:100%;"
                                     ng-repeat-start="el in nameOfStatId" class="btn btn-default" type="button"
-                                    ng-click="clickQuantity(el);"
+                                    ng-click="clickQuantity(el,true);"
                                     ng-class="{v2selected: el.key==currentQuantity.key}"
                                     ng-hide="(!el.old && currentSeason.old) || el.category">
                                 {{el.name}}
