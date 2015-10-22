@@ -316,10 +316,28 @@ video, object {
 .emph {
   font-size:20px;
   padding-left: 10px;
+  font-weight: bold;
 }
 
 #spieltag th {
   padding: 5px;
   font-weight: bold;
   font-size:18px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: antiquewhite;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  fill:white;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+.tick line {
+  opacity: 0.2;
 }

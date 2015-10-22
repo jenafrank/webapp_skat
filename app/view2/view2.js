@@ -73,7 +73,7 @@ angular.module('myApp.view2', ['ngRoute'])
             });
         }
 
-        function calculateResults() /**/{
+        function calculateResults() /**/ {
 
             // Declaration of shorthands
             $scope.results = results();
@@ -94,7 +94,7 @@ angular.module('myApp.view2', ['ngRoute'])
                 y[attr] = json2array(x[attr]);
             }
 
-            y.days=[];
+            y.days = [];
             for (var attr in x.days) {
                 y.days.push(json2array(x.days[attr]));
             }
@@ -177,13 +177,13 @@ angular.module('myApp.view2', ['ngRoute'])
             // points, val, teil, gew, ges, gewGegen, gesGegen
 
             var substr = keyOfObject.substring(0, 4);
-            var substrDay = keyOfObject.substring(0,3);
+            var substrDay = keyOfObject.substring(0, 3);
             var currentDayStr = currentDay.toString();
 
             if (substrDay === 'day') {
                 currentDay++;
                 currentDayStr = currentDay.toString();
-                $scope.results.days[currentDayStr]={};
+                $scope.results.days[currentDayStr] = {};
             }
 
             // Akkumuliere alle Spiele-Objekte der Firebase-Referenz
@@ -473,9 +473,9 @@ angular.module('myApp.view2', ['ngRoute'])
             var ydata = $scope.arrays.ratioGespielt;
 
             // expand data with ydata
-            ydata.forEach( function(yel) {
+            ydata.forEach(function (yel) {
                 var foundxel = null;
-                data.forEach(function(xel) {
+                data.forEach(function (xel) {
                     if (xel.name === yel.name) {
                         foundxel = xel;
                     }
@@ -483,21 +483,30 @@ angular.module('myApp.view2', ['ngRoute'])
                 foundxel.valuey = yel.value;
             });
 
+            var offsetX = 40;
+            var offsetY = 40;
+            var minorX = 20;
+            var minorY = 20;
+
             var yScale = d3.scale.linear()
-                .domain([0,50])
-                .range([0,h]);
+                .domain([10, 60])
+                .range([h - offsetY, minorY]);
 
             var xScale = d3.scale.linear()
-                .domain([50,100])
-                .range([0, w - 10]);
+                .domain([50, 100])
+                .range([offsetX, w - minorX]);
 
             var xAxis = d3.svg.axis()
                 .scale(xScale)
-                .orient("bottom");
+                .orient("bottom")
+                .innerTickSize(-h + minorY + offsetY)
+                .tickPadding(10);
 
             var yAxis = d3.svg.axis()
                 .scale(yScale)
-                .orient("left");
+                .orient("left")
+                .innerTickSize(-w + minorX + offsetX)
+                .tickPadding(10);
 
             // Remove SVG Element
             var svgElement = d3.select("svg");
@@ -513,30 +522,53 @@ angular.module('myApp.view2', ['ngRoute'])
                 .style("background-color", "transparent");
 
             //Create bars
-            svg.selectAll("rect")
+            svg.selectAll("circle")
                 .data(data, key)
                 .enter()
                 .append("circle")
-                .attr("cy", function (d, i) {
+                .attr("cy", function (d) {
                     return yScale(d.valuey);
                 })
-                .attr("cx", function (d, i) {
+                .attr("cx", function (d) {
                     return xScale(d.value);
                 })
                 .attr("r", 10)
                 .attr("fill", function (d) {
                     return colors(d.name);
-                });
+                })
+                .attr("stroke", "white")
+                .attr("stroke-width", "1");
 
             svg.append("g")
                 .attr("class", "axis")
-                .attr("transform", "translate(0," + (h - 20) + ")")
+                .attr("transform", "translate(0," + (h - offsetY) + ")")
                 .call(xAxis);
 
             svg.append("g")
                 .attr("class", "axis")
-                .attr("transform", "translate(50,0)")
+                .attr("transform", "translate(" + offsetX + ",0)")
                 .call(yAxis);
+
+            // grid lines
+            svg.append("line")
+                .attr("x1", offsetX)
+                .attr("y1", yScale(33.33))
+                .attr("x2", w - minorX)
+                .attr("y2", yScale(33.33))
+                .attr("fill", "transparent")
+                .attr("stroke", "white")
+                .attr("stroke-width", "5")
+                .attr("opacity", "0.2");
+
+            svg.append("line")
+                .attr("x1", xScale(100. * 5. / 6.))
+                .attr("y1", h - offsetY)
+                .attr("x2", xScale(100. * 5. / 6.))
+                .attr("y2", offsetY - minorY)
+                .attr("fill", "transparent")
+                .attr("stroke", "white")
+                .attr("stroke-width", "5")
+                .attr("opacity", "0.2");
         }
 
         function renderStackedBar() {
@@ -551,7 +583,7 @@ angular.module('myApp.view2', ['ngRoute'])
             return d.name;
         };
 
-        function availableStats () {
+        function availableStats() {
             return [
                 {
                     name: "Punkte",
@@ -728,7 +760,7 @@ angular.module('myApp.view2', ['ngRoute'])
             ];
         }
 
-        function availableSeasons () {
+        function availableSeasons() {
             return [
                 {key: 22, name: "Saison 22", info: "", old: false},
                 {key: 21, name: "Saison 21", info: "", old: false},

@@ -55,44 +55,47 @@
                 </div>
             </div>
             <div class="col-sm-7">
-                <div class="panel panel-success" style="position: fixed;">
+                <!-- rendering -->
+                <div class="panel panel-success" style="position: fixed;" ng-show="currentQuantity.render==true">
                     <div class="panel-heading">
                         <span>{{currentSeason.name}}</span>
                         <span style="float:right;">{{currentQuantity.name}}</span>
                     </div>
                     <div class="panel-body">
-                        <div ng-show="currentQuantity.render==true">
-                            <renderZone>
-                            </renderZone>
-                        </div>
-                        <div ng-hide="currentQuantity.render==true">
-                            <table id="spieltag">
-                                <thead>
-                                <th>
-                                    Spieltag
-                                </th>
-                                <th>
-                                    Datum
-                                </th>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="(key,obj) in arrays.days">
-                                    <td>
-                                        {{key+1}}
-                                    </td>
-                                    <td></td>
-                                    <td ng-repeat-start="el in arrays.days[key] | orderBy: '-value'">
-                                        <div class="emph">
-                                            {{el.name}}
-                                        </div>
-                                    </td>
-                                    <td ng-repeat-end>
-                                        {{el.value}}
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <renderZone>
+                        </renderZone>
+                    </div>
+                </div>
+
+                <!-- Non rendering -->
+                <div class="panel panel-success" ng-show="currentQuantity.render==false">
+                    <div class="panel-heading">
+                        <span>{{currentSeason.name}}</span>
+                        <span style="float:right;">{{currentQuantity.name}}</span>
+                    </div>
+                    <div class="panel-body">
+                        <table id="spieltag">
+                            <thead>
+                            <th>
+                                Spieltag
+                            </th>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="(key,obj) in arrays.days">
+                                <td>
+                                    {{key+1}}
+                                </td>
+                                <td ng-repeat-start="el in arrays.days[key] | orderBy: '-value'">
+                                    <div class="emph">
+                                        {{el.name}}
+                                    </div>
+                                </td>
+                                <td ng-repeat-end>
+                                    {{el.value}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
