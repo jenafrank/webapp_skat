@@ -223,6 +223,7 @@ angular.module('myApp.view2')
 
         function seasons() {
             return [
+                {key: 23, name: "Saison 23", info: "", old: false},
                 {key: 22, name: "Saison 22", info: "", old: false},
                 {key: 21, name: "Saison 21", info: "", old: false},
                 {key: 20, name: "Saison 20", info: "", old: false},
