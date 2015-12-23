@@ -109,7 +109,7 @@ angular.module('myApp.view2', ['ngRoute'])
 
                 $scope.$apply();
                 // Automatic Reload ?
-                // myFirebaseRef.child("season_" + season).off("value");
+                myFirebaseRef.child("season_" + season).off("value");
 
                 if (completionHandler) {
                     completionHandler();
