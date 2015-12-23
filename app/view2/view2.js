@@ -7,6 +7,10 @@ angular.module('myApp.view2', ['ngRoute'])
             templateUrl: 'view2/view2.html',
             controller: 'View2Ctrl'
         });
+        $routeProvider.when('/eingabeView', {
+            templateUrl: 'eingabeView/eingabeView.html',
+            controller: 'EingabeViewCtrl'
+        });
     }])
 
     .controller('View2Ctrl', ['$scope', 'Const', 'Render', 'Traverse', function ($scope,Const,Render,Traverse) {
@@ -104,7 +108,8 @@ angular.module('myApp.view2', ['ngRoute'])
                 calculateResults();
 
                 $scope.$apply();
-                myFirebaseRef.child("season_" + season).off("value");
+                // Automatic Reload ?
+                // myFirebaseRef.child("season_" + season).off("value");
 
                 if (completionHandler) {
                     completionHandler();
