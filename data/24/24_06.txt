@@ -1,0 +1,40 @@
+R Od P F
+
+F 22
+P 96
+F -48
+Od 35
+
+P 40
+F 96
+E
+R 36
+
+P R F Od
+
+F 72
+P 96
+R 60
+R 96
+
+E
+P 24
+Od 23
+F 33
+
+F R P Od
+
+E
+F 120
+Od 22
+R 33
+
+P 48
+P 23
+F 60
+R 120
+
+Od 22
+F 72
+R 96
+F 30
