@@ -1,0 +1,38 @@
+R P Od
+
+R -36
+P -132 R
+Od -44
+
+P Ro Od R
+
+Ro -88
+Od 23
+R 46 Ro
+Od 144
+
+Od 33
+Od -88 P
+Ro 48
+P -36
+
+Ro 23
+Ro 55
+R 23
+R 55
+
+P 48
+Ro 120
+E
+Ro 72
+
+Od 22
+R 24
+P 72
+R 36
+
+Od P Ro
+
+P 27
+Ro 44
+Od 46
